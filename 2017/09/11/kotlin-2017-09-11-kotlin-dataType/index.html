@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Kotlin,数据类型," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="任意一种开发语言都有其数据类型，并且数据类型对于一门开发语言来说是最基本的构成，同时也是最基础的语法。当然，kotlin也不例外。kotlin的数据类型和Java是大致相同的，但是他们的写法不同，并且类型之间的转换也存在着差异。下面为大家详细说明并举例。 目录 一、数值类型1、Kotlin中的数字的内置类型（接近与Java），其关键字为：   Byte =&amp;gt; 字节 =&amp;gt; 8位 Shor">
+<meta name="keywords" content="Kotlin,数据类型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kotlin从无到有系列之数据类型介绍">
+<meta property="og:url" content="http://yoursite.com/2017/09/11/kotlin-2017-09-11-kotlin-dataType/index.html">
+<meta property="og:site_name" content="Jetictors">
+<meta property="og:description" content="任意一种开发语言都有其数据类型，并且数据类型对于一门开发语言来说是最基本的构成，同时也是最基础的语法。当然，kotlin也不例外。kotlin的数据类型和Java是大致相同的，但是他们的写法不同，并且类型之间的转换也存在着差异。下面为大家详细说明并举例。 目录 一、数值类型1、Kotlin中的数字的内置类型（接近与Java），其关键字为：   Byte =&amp;gt; 字节 =&amp;gt; 8位 Shor">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/6304125-b81a25d2b4fda08e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-10-29T14:06:08.420Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kotlin从无到有系列之数据类型介绍">
+<meta name="twitter:description" content="任意一种开发语言都有其数据类型，并且数据类型对于一门开发语言来说是最基本的构成，同时也是最基础的语法。当然，kotlin也不例外。kotlin的数据类型和Java是大致相同的，但是他们的写法不同，并且类型之间的转换也存在着差异。下面为大家详细说明并举例。 目录 一、数值类型1、Kotlin中的数字的内置类型（接近与Java），其关键字为：   Byte =&amp;gt; 字节 =&amp;gt; 8位 Shor">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/6304125-b81a25d2b4fda08e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/09/11/kotlin-2017-09-11-kotlin-dataType/"/>
+
+
+
+
+
+  <title>Kotlin从无到有系列之数据类型介绍 | Jetictors</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+    
+  <a href="https://github.com/Jetictors">
+  <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub">
+  </a>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jetictors</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-shouye"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/11/kotlin-2017-09-11-kotlin-dataType/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jetictors">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Kotlin从无到有系列之数据类型介绍</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-11T00:00:00+08:00">
+                2017-09-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  3,148
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  14
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>任意一种开发语言都有其数据类型，并且数据类型对于一门开发语言来说是最基本的构成，同时也是最基础的语法。当然，kotlin也不例外。kotlin的数据类型和Java是大致相同的，但是他们的写法不同，并且类型之间的转换也存在着差异。下面为大家详细说明并举例。</p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p><img src="http://upload-images.jianshu.io/upload_images/6304125-b81a25d2b4fda08e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="一、数值类型"><a href="#一、数值类型" class="headerlink" title="一、数值类型"></a>一、数值类型</h2><p><strong>1、Kotlin中的数字的内置类型（接近与Java），其关键字为：</strong></p>
+<blockquote>
+<ul>
+<li>Byte =&gt; 字节 =&gt; 8位</li>
+<li>Short =&gt; 短整型 =&gt; 16位</li>
+<li>Int =&gt; 整型 =&gt; 32位</li>
+<li>Long =&gt; 长整型 =&gt; 64位</li>
+<li>Float =&gt; 浮点型 =&gt; 32位</li>
+<li>Double =&gt; 双精度浮点型 =&gt; 64位</li>
+</ul>
+</blockquote>
+<p>例：</p>
+<pre><code>var a: Byte = 2
+var b: Short = 2
+var c: Int = 2
+var d: Long = 2L         //长整型由大写字母L标记
+var e: Float = 2f        //单精度浮点型由小写字母f或大写字符F标记
+var f: Double = 2.0
+println(&quot; a =&gt; $a \n b =&gt; $b \n c =&gt; $c \n d =&gt; $d \n e =&gt; $e \n f =&gt; $f);   
+</code></pre><p>输出结果为：</p>
+<pre><code>a =&gt; 2 
+b =&gt; 2 
+c =&gt; 2 
+d =&gt; 2 
+e =&gt; 2.0 
+f =&gt; 2.0 
+</code></pre><p><strong>2、进制数</strong></p>
+<blockquote>
+<ul>
+<li>二进制数</li>
+<li>八进制数（Kotlin不支持）</li>
+<li>十进制数</li>
+<li>十六进制数  </li>
+</ul>
+</blockquote>
+<p>例：</p>
+<pre><code>var g = 0x0F            //十六进制数
+var h = 0b00001011      //二进制数
+var k = 123             //十进制数
+// ps：Kotlin不支持八进制数
+println(&quot; g =&gt; $g \n h =&gt; $h \n k =&gt; $k);   
+</code></pre><p>输出结果为：</p>
+<pre><code>g =&gt; 15 
+h =&gt; 11 
+k =&gt; 123 
+</code></pre><p><strong>3、数字类型字面常量的下划线</strong></p>
+<blockquote>
+<p><strong>作用：分割数字进行分组，使数字常量更易读</strong></p>
+</blockquote>
+<p>例：</p>
+<pre><code>val oneMillion = 1_000_000
+val creditCardNumber = 1234_5678_9012_3456L
+val socialSecurityNumber = 999_99_9999L
+val hexBytes = 0xFF_EC_DE_5E
+val bytes = 0b11010010_01101001_10010100_10010010
+
+println(&quot;oneMillion =&gt; $oneMillion&quot;)
+println(&quot;creditCardNumber =&gt; $creditCardNumber&quot;)
+println(&quot;socialSecurityNumber =&gt; $socialSecurityNumber&quot;)
+println(&quot;hexBytes =&gt; $hexBytes&quot;)
+println(&quot;bytes =&gt; $bytes&quot;)
+</code></pre><p>输出结果为：</p>
+<pre><code>oneMillion =&gt; 1000000
+creditCardNumber =&gt; 1234567890123456
+socialSecurityNumber =&gt; 999999999
+hexBytes =&gt; 4293713502
+bytes =&gt; 3530134674
+</code></pre><p><strong>4、装箱与拆箱</strong></p>
+<ul>
+<li><strong>装箱与拆箱</strong><blockquote>
+<ul>
+<li>在<code>Kotlin</code>中，存在数字的装箱，但是不存在拆箱。因为<code>Kotlin</code>是没有基本数据类型的，<code>Kotlin</code>是万般皆对象的原则。故<strong>不存在和<code>Java</code>中的类似<code>int</code>是数据类型，<code>Integer</code>是整型的引用类型。</strong></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>在<code>Kotlin</code>中要实现装箱操作。首先要了解可空引用。即类似<code>Int?</code>(只限数值类型)这样的。</p>
+<p>例：</p>
+<pre><code>val numValue: Int = 123
+//装箱的过程，其实装箱之后其值是没有变化的
+val numValueBox: Int? = numValue
+println(&quot;装箱后： numValueBox =&gt; $numValueBox&quot;)
+</code></pre><p>输出结果为：</p>
+<pre><code>装箱后： numValueBox =&gt; 123
+</code></pre><ul>
+<li><strong>两个数值的比较</strong><blockquote>
+<p>判断两个数值是否相等（<code>==</code>）,判断两个数值在内存中的地址是否相等（<code>===</code>）,其实上面的装箱操作之后其内存中的地址根据其数据类型的数值范围而定。</p>
+</blockquote>
+</li>
+</ul>
+<p>例：</p>
+<pre><code>val numValue: Int = 128    
+val numValueBox: Int? = numValue
+
+/*
+    比较两个数字
+ */
+var result: Boolean
+result = numValue == numValueBox
+println(&quot;numValue == numValueBox =&gt; $result&quot;)  // =&gt; true,其值是相等的
+
+result = numValue === numValueBox
+/*
+  上面定义的变量是Int类型，大于127其内存地址不同，反之则相同。
+  这是`kotlin`的缓存策略导致的，而缓存的范围是` -128 ~ 127 `。
+  故，下面的打印为false
+*/
+println(&quot;numValue === numValueBox =&gt; $result&quot;)  
+</code></pre><p>输出结果为：</p>
+<pre><code>numValue == numValueBox =&gt; true
+numValue === numValueBox =&gt; false
+</code></pre><blockquote>
+<p><strong>Ps:</strong>各位可以试试将变量<code>numValue</code>的值改为在<code>-128 ~ 127</code>这个区间的数字试试</p>
+</blockquote>
+<p><strong>5、转换</strong></p>
+<ul>
+<li><strong>显式转换</strong><blockquote>
+<ul>
+<li>较小的类型不会被隐式转换为更大的类型，故而系统提供了显式转换。提供的显式转换方法如下：<ol>
+<li><code>toByte()</code> =&gt; 转换为字节型</li>
+<li><code>toShort()</code> =&gt; 转换为短整型</li>
+<li><code>toInt()</code> =&gt; 转换为整型</li>
+<li><code>toLong()</code> =&gt; 转换为长整型</li>
+<li><code>toFloat()</code> =&gt; 转换为浮点型</li>
+<li><code>toDouble()</code> =&gt; 转换为双精度浮点型</li>
+<li><code>toChar()</code> =&gt; 转换为字符型</li>
+<li><code>toString()</code> =&gt; 转换为字符串型</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>例：</p>
+<pre><code>var numA: Int = 97
+println(numA.toByte())
+println(numA.toShort())
+println(numA.toInt())
+println(numA.toLong())
+println(numA.toFloat())
+println(numA.toDouble())
+println(numA.toChar())
+println(numA.toString())
+</code></pre><p>输出结果为：</p>
+<pre><code>97
+97
+97
+97.0
+97.0
+97
+a
+97
+</code></pre><ul>
+<li><strong>隐式转换</strong><blockquote>
+<p>类型是从上下文推断出来的，即算术运算则被重载为适当的转换</p>
+</blockquote>
+</li>
+</ul>
+<p>例：</p>
+<pre><code>// 30L + 12 -&gt; Long + Int =&gt; Long
+val num = 30L + 12
+print(num)
+</code></pre><p>输出结果为：</p>
+<pre><code>42
+</code></pre><p><strong>6、位运算符</strong></p>
+<blockquote>
+<ul>
+<li><code>Kotlin</code>中对于按位操作，和<code>Java</code>是有很大的差别的。<code>Kotlin</code>中没有特殊的字符，但是只能命名为可以以中缀形式调用的函数，下列是按位操作的完整列表(仅适用于<code>整形（</code>Int）<code>和长整形（</code>Long<code>）</code>)：<ol>
+<li><code>shl(bits)</code>  =&gt;  有符号向左移 (类似<code>Java</code>的<code>&lt;&lt;</code>)</li>
+<li><code>shr(bits)</code>  =&gt;  有符号向左移 (类似<code>Java</code>的<code>&gt;&gt;</code>)</li>
+<li><code>ushr(bits)</code>  =&gt;  有符号向左移 (类似<code>Java</code>的<code>&gt;&gt;&gt;</code>)</li>
+<li><code>and(bits)</code>  =&gt;  位运算符 <code>and</code> (同<code>Java</code>中的按位与)</li>
+<li><code>or(bits)</code>  =&gt;  位运算符 <code>or</code> (同<code>Java</code>中的按位或)</li>
+<li><code>xor(bits)</code>  =&gt;  位运算符 <code>xor</code> (同<code>Java</code>中的按位异或)</li>
+<li><code>inv()</code>  =&gt;  位运算符 按位取反 (同<code>Java</code>中的按位取反)</li>
+</ol>
+</li>
+<li><strong>Ps：<code>inv()方法存在与</code>kotlin<code>源码中的</code>Primitives.kt`类中，但是我也不知为何就不能调用这个方法</strong></li>
+</ul>
+</blockquote>
+<p>下面附上<code>Kotlin</code>中关于位操作符的源码：</p>
+<pre><code>/** Shifts this value left by [bits]. */
+public infix fun shl(bitCount: Int): Int
+/** Shifts this value right by [bits], filling the leftmost bits with copies of the sign bit. */
+public infix fun shr(bitCount: Int): Int
+/** Shifts this value right by [bits], filling the leftmost bits with zeros. */
+public infix fun ushr(bitCount: Int): Int
+/** Performs a bitwise AND operation between the two values. */
+public infix fun and(other: Int): Int
+/** Performs a bitwise OR operation between the two values. */
+public infix fun or(other: Int): Int
+/** Performs a bitwise XOR operation between the two values. */
+public infix fun xor(other: Int): Int
+/** Inverts the bits in this value. */
+public fun inv(): Int
+</code></pre><p>例：</p>
+<pre><code> /*
+    位运算符
+    支持序列如下：shl、shr、ushr、and、or、xor
+ */
+var operaNum: Int = 4
+
+var shlOperaNum = operaNum shl(2)
+var shrOperaNum = operaNum shr(2)
+var ushrOperaNum = operaNum ushr(2)
+var andOperaNum = operaNum and(2)
+var orOperaNum = operaNum or(2)
+var xorOperaNum = operaNum xor(2)
+
+println(&quot;shlOperaNum =&gt; $shlOperaNum \n &quot; +
+        &quot;shrOperaNum =&gt; $shrOperaNum \n &quot; +
+        &quot;ushrOperaNum =&gt; $ushrOperaNum \n &quot; +
+        &quot;andOperaNum =&gt; $andOperaNum \n &quot; +
+        &quot;orOperaNum =&gt; $orOperaNum \n &quot; +
+        &quot;xorOperaNum =&gt; $xorOperaNum \n &quot;)
+</code></pre><p>输出结果为：</p>
+<pre><code>shlOperaNum =&gt; 16 
+shrOperaNum =&gt; 1 
+ushrOperaNum =&gt; 1 
+andOperaNum =&gt; 0 
+orOperaNum =&gt; 6 
+xorOperaNum =&gt; 6 
+</code></pre><h2 id="二、布尔类型（Boolean）"><a href="#二、布尔类型（Boolean）" class="headerlink" title="二、布尔类型（Boolean）"></a>二、布尔类型（Boolean）</h2><p><strong>1、关键字</strong></p>
+<blockquote>
+<p><code>Boolean</code>关键字表示布尔类型，并且其值有<code>true</code>和<code>false</code></p>
+</blockquote>
+<p>例：</p>
+<pre><code>var isNum: Boolean
+isNum = false
+println(&quot;isNum =&gt; $isNum&quot;)
+</code></pre><p>输出结果为：</p>
+<pre><code>isNum =&gt; false
+</code></pre><p><strong>2、逻辑操作符（与Java相同）</strong></p>
+<blockquote>
+<ul>
+<li>‘ || ‘ =&gt; 逻辑或（或者） </li>
+<li>‘ &amp;&amp; ‘ =&gt; 逻辑与（并且）</li>
+<li>‘ ! ‘ =&gt; 逻辑非（取反）</li>
+</ul>
+</blockquote>
+<p>例：</p>
+<pre><code>/*
+    操作运算符
+    &apos; || &apos; =&gt; 逻辑或（或者）
+    &apos; &amp;&amp; &apos; =&gt; 逻辑与（并且）
+    &apos; ! &apos; =&gt; 逻辑非（取反）
+ */
+var a: Boolean = false
+var b: Boolean = true
+var result: Boolean
+
+/* 逻辑或操作 */
+if (a || b){
+    result = a || b
+    println(&quot;a || b =&gt; $result&quot;)
+}
+
+/* 逻辑与操作 */
+if (a &amp;&amp; b){
+    result = a &amp;&amp; b
+    println(&quot;a &amp;&amp; b =&gt; $result&quot;)
+}
+
+/* 逻辑非操作 */
+result = !a
+println(&quot;!a =&gt; $result&quot;)
+
+result = !b
+println(&quot;!b =&gt; $result&quot;)
+</code></pre><p>输出结果为：</p>
+<pre><code>isNum =&gt; false
+a || b =&gt; true
+!a =&gt; true
+!b =&gt; false
+</code></pre><h2 id="三、字符型（Char）"><a href="#三、字符型（Char）" class="headerlink" title="三、字符型（Char）"></a>三、字符型（Char）</h2><p><strong>1、关键字</strong></p>
+<blockquote>
+<p><code>Char</code>为表示字符型，字符变量用单引号（‘  ’）表示。并且不能直接视为数字，不过可以显式转换为数字。</p>
+</blockquote>
+<p>例：</p>
+<pre><code>var char1: Char
+char = &apos;a&apos;
+//char1 = 1        =&gt; 这句代码会直接出错
+println(&quot;char1 =&gt; $char1&quot;)
+</code></pre><p>输出结果为：</p>
+<pre><code>char1 =&gt; a
+</code></pre><p><strong>2、显示转换为其他类型</strong></p>
+<blockquote>
+<p>字符型的变量不仅可以转换为数字，同时也可转换为其他类型</p>
+</blockquote>
+<p>例：</p>
+<pre><code>var var1 = char1.toByte()
+var var2 = char1.toInt()
+var var3 = char1.toString()
+var var4 = char1.toFloat()
+var var5 = char1.toShort()
+println(&quot;var1 =&gt; $var1 \n var2 =&gt; $var2 \n var3 =&gt; $var3 \n var4 =&gt; $var4 \n var5 =&gt; $var5&quot;)
+</code></pre><p>输出结果为：</p>
+<pre><code>var1 =&gt; 97 
+var2 =&gt; 97 
+var3 =&gt; a 
+var4 =&gt; 97.0 
+var5 =&gt; 97
+</code></pre><blockquote>
+<p>PS:除了可以转换类型外，当变量为英文字母时还支持大小写转换。</p>
+</blockquote>
+<p>例：</p>
+<pre><code>/*
+   当字符变量为英文字母时，大小写的转换
+*/
+var charA: Char = &apos;a&apos;
+var charB: Char = &apos;B&apos;
+var charNum: Char = &apos;1&apos;
+var result: Char
+
+// 转换为大写
+result = charA.toUpperCase() 
+println(&quot;result =&gt; $result&quot;)
+
+// 转换为小写
+result = charB.toLowerCase()
+println(&quot;result =&gt; $result&quot;)
+
+//当字符变量不为英文字母时，转换无效
+result = charNum.toLowerCase()
+println(&quot;result =&gt; $result&quot;)
+</code></pre><p>输出结果为：</p>
+<pre><code>result =&gt; A
+result =&gt; b
+result =&gt; 1
+</code></pre><p><strong>3、字符转义</strong></p>
+<p>同Java一样，使用某些特殊的字符时，要使用转义。下列是支持的转义序列：</p>
+<blockquote>
+<ul>
+<li><code>\t</code> =&gt; 表示制表符</li>
+<li><code>\n</code> =&gt; 表示换行符</li>
+<li><code>\b</code> =&gt; 表示退格键（键盘上的Back建）</li>
+<li><code>\r</code> =&gt; 表示键盘上的<code>Enter</code>键</li>
+<li><code>\\</code> =&gt; 表示反斜杠</li>
+<li><code>\&#39;</code> =&gt; 表示单引号</li>
+<li><code>\&quot;</code> =&gt; 表示双引号</li>
+<li><code>\$</code> =&gt; 表示美元符号，如果不转义在<code>kotlin</code>中就表示变量的引用了</li>
+<li>其他的任何字符请使用Unicode转义序列语法。例：’\uFF00’</li>
+</ul>
+</blockquote>
+<p>例：</p>
+<pre><code>println(&quot;\n  换行符&quot;)
+println(&quot;\t  制表符&quot;)
+println(&quot; \b  退格键&quot;)
+println(&quot;\r  Enter键同样换行&quot;)
+println(&apos;\\&apos;)
+println(&apos;\&apos;&apos;)
+println(&apos;\&quot;&apos;)
+println(&apos;\$&apos;)
+println(&apos;\uFF01&apos;)
+</code></pre><p>输出结果为：</p>
+<pre><code>  换行符
+  制表符
+
+  退格键
+  Enter键同样换行
+\
+&apos;
+&quot;
+$
+！
+</code></pre><h2 id="四、字符串类型（String）"><a href="#四、字符串类型（String）" class="headerlink" title="四、字符串类型（String）"></a>四、字符串类型（String）</h2><p><strong>1、关键字</strong></p>
+<blockquote>
+<p><code>String</code>表示字符串类型。其是不可变的。所以字符串的元素可以通过索引操作的字符：s[i]来访问。可以使用for循环迭代字符串：</p>
+</blockquote>
+<p>例：</p>
+<pre><code>val str: String = &quot;kotlin&quot;
+println(&quot;str =&gt; $str&quot;)
+
+//迭代
+for (s in str){
+    print(s)
+    print(&quot;\t&quot;)
+}
+</code></pre><p>输出结果为：</p>
+<pre><code>str =&gt; kotlin
+k    o    t    l    i    n    
+</code></pre><p><strong>2、 字符串字面量</strong></p>
+<blockquote>
+<p>在<code>Kotlin</code>中， 字符串字面量有两种类型：</p>
+<ul>
+<li>包含转义字符的字符串 转义包括（<code>\t</code>、<code>\n</code>等）,不包含转义字符串的也同属此类型</li>
+<li>包含任意字符的字符串 由三重引号（<code>&quot;&quot;&quot; .... &quot;&quot;&quot;</code>）表示</li>
+</ul>
+</blockquote>
+<p>例：</p>
+<pre><code>// 类型1：
+var str1: String = &quot;hello\t\tkotlin&quot;
+println(str1)
+str1 = &quot;hello kotlin&quot;
+println(str1)
+
+// 类型2：
+val str2 = &quot;&quot;&quot; fun main(args: Array&lt;String&gt;){
+    println(&quot;我是三重引号引用的字符串，我可以包含任意字符&quot;)
+    } &quot;&quot;&quot;
+println(str2)
+</code></pre><p>输出结果为：</p>
+<pre><code>hello        kotlin
+hello kotlin
+fun main(args: Array&lt;String&gt;){
+    println(&quot;我是三重引号引用的字符串，我可以包含任意字符&quot;)
+    } 
+</code></pre><blockquote>
+<p>PS： 可以使用<code>trimMargin()</code>函数删除前导空格 ，默认使用符号(<code>|</code>)作为距前缀，当然也可以使用其他字符。例：右尖括号（<code>&gt;</code>）、左尖括号（<code>&lt;</code>）等。</p>
+</blockquote>
+<p> 例：</p>
+<pre><code>val str3: String = &quot;&quot;&quot;
+    &gt; I`m like Kotlin .
+    &gt; I`m like Java .
+    &gt; I`m like Android .
+    &gt; I`m like React-Native.
+&quot;&quot;&quot;.trimMargin(&quot;&gt;&quot;)
+println(str3)
+</code></pre><p>输出结果为：</p>
+<pre><code>I`m like Kotlin .
+I`m like Java .
+I`m like Android .
+I`m like React-Native.
+</code></pre><p><strong>3、字符串模板</strong></p>
+<blockquote>
+<p>使用字符串模板的符号为（<code>$</code>）。在<code>$</code>符号后面加上变量名或大括号中的表达式</p>
+</blockquote>
+<p>例：</p>
+<pre><code>val text1: String = &quot;我来了！&quot;
+var text2: String = &quot;$text1 kotlin&quot;
+var text3: String = &quot;$text2 ${text1.length} 哈哈！！！！&quot;
+println(text1)
+println(text2)
+println(text3)
+</code></pre><p>输出结果为：</p>
+<pre><code>我来了！
+我来了！ kotlin
+我来了！ kotlin 4 哈哈！！！！
+</code></pre><h2 id="五、数组型（Array）"><a href="#五、数组型（Array）" class="headerlink" title="五、数组型（Array）"></a>五、数组型（Array）</h2><blockquote>
+<ul>
+<li><code>Kotlin</code>中数组由<code>Array&lt;T&gt;</code>表示，可以去看看源码实现，里面就几个方法</li>
+<li>创建数组的3个函数<ol>
+<li><code>arrayOf()</code> </li>
+<li><code>arrayOfNulls()</code></li>
+<li>工厂函数（<code>Array()</code>）</li>
+</ol>
+</li>
+</ul>
+</blockquote>
+<p><strong>1、arrayOf()</strong></p>
+<blockquote>
+<p>创建一个数组，参数是一个可变参数的泛型对象</p>
+</blockquote>
+<p>例：</p>
+<pre><code>var arr1 = arrayOf(1,2,3,4,5) //等价于[1,2,3,4,5]
+for (v in arr1){
+    print(v)
+    print(&quot;\t&quot;)
+}
+
+var arr2 = arrayOf(&quot;0&quot;,&quot;2&quot;,&quot;3&quot;,&apos;a&apos;,32.3f)
+for (v in arr2){
+    print(v)
+    print(&quot;\t&quot;)
+}
+</code></pre><p>输出结果为：</p>
+<pre><code>1    2    3    4    5    
+0    2    3    a    32.3    
+</code></pre><p><strong>2、arrayOfNulls()</strong></p>
+<blockquote>
+<p>用于创建一个指定数据类型且可以为空元素的给定元素个数的数组</p>
+</blockquote>
+<p>例：</p>
+<pre><code>var arr3 = arrayOfNulls&lt;Int&gt;(3)
+
+//如若不予数组赋值则arr3[0]、arr3[1]、arr3[2]皆为null
+for(v in arr3){
+    print(v)
+    print(&quot;\t&quot;)
+}
+
+println()
+
+//为数组arr3赋值
+arr3[0] = 10
+arr3[1] = 20
+arr3[2] = 30
+
+for(v in arr3){
+    print(v)
+    print(&quot;\t&quot;)
+}
+</code></pre><p>输出结果为：</p>
+<pre><code>null    null    null    
+10    20    30    
+</code></pre><p><strong>3、工厂函数</strong></p>
+<blockquote>
+<ul>
+<li>使用一个工厂函数<code>Array()</code>，它使用数组大小和返回给定其索引的每个数组元素的初始值的函数。</li>
+<li><code>Array()</code> =&gt; 第一个参数表示数组元素的个数，第二个参数则为使用其元素下标组成的表达式</li>
+</ul>
+</blockquote>
+<p>例：</p>
+<pre><code>var arr4 = Array(5,{index -&gt; (index * 2).toString() })
+for (v in arr4){
+    print(v)
+    print(&quot;\t&quot;)
+}
+</code></pre><p>输出结果为：</p>
+<pre><code>0    2    4    6    8
+</code></pre><p><strong>4、原始类型数组</strong></p>
+<blockquote>
+<ul>
+<li><p><code>Kotlin</code>还有专门的类来表示原始类型的数组，没有装箱开销，它们分别是：</p>
+<ol>
+<li><code>ByteArray</code> =&gt; 表示字节型数组</li>
+<li><code>ShortArray</code> =&gt; 表示短整型数组</li>
+<li><code>IntArray</code> =&gt; 表示整型数组</li>
+<li><code>LongArray</code> =&gt; 表示长整型数组</li>
+<li><code>BooleanArray</code> =&gt; 表示布尔型数组</li>
+<li><code>CharArray</code> =&gt; 表示字符型数组</li>
+<li><code>FloatArray</code> =&gt; 表示浮点型数组</li>
+<li><code>DoubleArray</code> =&gt; 表示双精度浮点型数组</li>
+</ol>
+</li>
+<li><p>PS: <strong><code>Kotlin</code>中不支持字符串类型这种原始类型数组，可以看源码<code>Arrays.kt</code>这个类中并没有字符串数组的声明。而源码中<code>StringArray.kt</code>这个类并不是声明字符串型数组的。</strong></p>
+</li>
+</ul>
+</blockquote>
+<p>下面的例子只演示了几种，其他的类似。<br>例：</p>
+<pre><code>var intArr: IntArray = intArrayOf(1,2,3,4,5)
+for (number in intArr){
+    print(number)
+    print(&quot;\t&quot;)
+}
+
+println()
+
+var charArr: CharArray = charArrayOf(&apos;a&apos;,&apos;1&apos;,&apos;b&apos;,&apos;c&apos;,&apos;3&apos;,&apos;d&apos;)
+for (char in charArr){
+    print(char)
+    print(&quot;\t&quot;)
+}
+
+println()
+
+var longArr: LongArray = longArrayOf(12L,1254L,123L,111L)
+for (long in longArr){
+    print(long)
+    print(&quot;\t&quot;)
+}
+</code></pre><p>输出结果为：</p>
+<pre><code>1    2    3    4    5    
+a    1    b    c    3    d    
+12    1254   123    111    
+</code></pre><h2 id="六、尾语"><a href="#六、尾语" class="headerlink" title="六、尾语"></a>六、尾语</h2><p>不管对于任何一门编程语言，都有其数据类型，而数据类型是学习一门编程语言的基础。所以请各位大佬认真并且跟着代码敲一遍。特别是<strong>数组</strong>和<strong>字符串类型</strong>这两个点。</p>
+<p><a href="https://github.com/Jetictors/KotlinLeran/blob/master/src/com/kotlin/leran/basis/DataTypeDemo.kt" target="_blank" rel="noopener">源代码</a></p>
+<p>如果各位大佬看了之后感觉还阔以，就请各位大佬随便star一下，您的关注是我最大的动力。    </p>
+<p>我的个人博客：<a href="&quot;https://jetictors.github.io/">Jetictors</a>        </p>
+<p>我的简书：<a href="http://www.jianshu.com/u/9877d6088780" target="_blank" rel="noopener">http://www.jianshu.com/u/9877d6088780</a>        </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/path/to/your/wechatqcode ex. /uploads/wechat-qcode.jpg" alt="John Doe wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎加入kotlin交流群，群号</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="John Doe WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="John Doe Alipay"/>
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Kotlin/" rel="tag"># Kotlin</a>
+          
+            <a href="/tags/数据类型/" rel="tag"># 数据类型</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/10/kotlin-2017-09-10-kotlin-var/" rel="next" title="Kotlin从无到有系列之变量、常量、注释的使用">
+                <i class="fa fa-chevron-left"></i> Kotlin从无到有系列之变量、常量、注释的使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/24/kotlin-2017-09-24-kotlin-control/" rel="prev" title="Kotlin从无到有系列之控制语句">
+                Kotlin从无到有系列之控制语句 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="John Doe" />
+          <p class="site-author-name" itemprop="name">John Doe</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Jetictors" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://juejin.im/user/5709f5798ac247004c295d95/posts" target="_blank" title="掘金">
+                  
+                    <i class="fa fa-fw fa-juejin"></i>
+                  
+                    
+                      掘金
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.cnblogs.com/Jetictors/" target="_blank" title="博客园">
+                  
+                    <i class="fa fa-fw fa-blog"></i>
+                  
+                    
+                      博客园
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、数值类型"><span class="nav-number">2.</span> <span class="nav-text">一、数值类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、布尔类型（Boolean）"><span class="nav-number">3.</span> <span class="nav-text">二、布尔类型（Boolean）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、字符型（Char）"><span class="nav-number">4.</span> <span class="nav-text">三、字符型（Char）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、字符串类型（String）"><span class="nav-number">5.</span> <span class="nav-text">四、字符串类型（String）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、数组型（Array）"><span class="nav-number">6.</span> <span class="nav-text">五、数组型（Array）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、尾语"><span class="nav-number">7.</span> <span class="nav-text">六、尾语</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<!--
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+-->
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共8.8k字</span>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
