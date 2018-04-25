@@ -63,8 +63,6 @@
   
 
   
-
-  
     
       
     
@@ -82,8 +80,16 @@
 
   
     
+      
     
-    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -117,7 +123,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="kotlin从无到有之环境搭建">
 <meta property="og:url" content="http://yoursite.com/2017/09/09/kotlin-2017-09-09-kotlin-start/index.html">
-<meta property="og:site_name" content="Jetictors">
+<meta property="og:site_name" content="Jetictors&#39;Blogs">
 <meta property="og:description" content="众所周知，Kotlin出来已经良久了。kotlin有着众多优势，不管是用于Android开发中，还是Java开发，都能缩减很大的代码量，大大提高了工作效率。而小生本人也是才从忙碌的个工作中抽身出来，有点儿空闲的时间学习这新鲜的技术。无疑的是这是一股新鲜的血液，也是引领技术领略的潮流。 目录 一、kotlin介绍、优势   Kotlin 是一个基于 JVM 的新的编程语言，由 JetBrains 开">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/6304125-a8ff6ff5e6de3d0f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -177,7 +183,7 @@
 
 
 
-  <title>kotlin从无到有之环境搭建 | Jetictors</title>
+  <title>kotlin从无到有之环境搭建 | Jetictors'Blogs</title>
   
 
 
@@ -194,6 +200,14 @@
 
 
 </head>
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+
+undefined
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -217,12 +231,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Jetictors</span>
+        <span class="site-title">Jetictors'Blogs</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">热爱编程、技术，喜爱分享的小码农</p>
       
   </div>
 
@@ -245,7 +259,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-shouye"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -327,13 +341,13 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/09/kotlin-2017-09-09-kotlin-start/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="Jetictors">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jetictors">
+      <meta itemprop="name" content="Jetictors'Blogs">
     </span>
 
     
@@ -508,8 +522,8 @@
     
       <div>
         <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/path/to/your/wechatqcode ex. /uploads/wechat-qcode.jpg" alt="John Doe wechat" style="width: 200px; max-width: 100%;"/>
-    <div>欢迎加入kotlin交流群，群号</div>
+    <img id="wechat_subscriber_qcode" src="/uploads/qq_qcode.jpg" alt="Jetictors wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎加入kotlin交流群，群号 497071402</div>
 </div>
 
       </div>
@@ -526,14 +540,14 @@
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="John Doe WeChat Pay"/>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Jetictors WeChat Pay"/>
         <p>WeChat Pay</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="John Doe Alipay"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Jetictors Alipay"/>
         <p>Alipay</p>
       </div>
     
@@ -563,11 +577,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Kotlin/" rel="tag"># Kotlin</a>
+            <a href="/tags/Kotlin/" rel="tag"><i class="fa fa-tag"></i> Kotlin</a>
           
-            <a href="/tags/IntelliJ-IDEA/" rel="tag"># IntelliJ IDEA</a>
+            <a href="/tags/IntelliJ-IDEA/" rel="tag"><i class="fa fa-tag"></i> IntelliJ IDEA</a>
           
-            <a href="/tags/Android-Studio/" rel="tag"># Android Studio</a>
+            <a href="/tags/Android-Studio/" rel="tag"><i class="fa fa-tag"></i> Android Studio</a>
           
         </div>
       
@@ -653,11 +667,11 @@
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="John Doe" />
-          <p class="site-author-name" itemprop="name">John Doe</p>
+               src="/uploads/avatar.jpg"
+               alt="Jetictors" />
+          <p class="site-author-name" itemprop="name">Jetictors</p>
            
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">凡事豫则立，不豫则废 ———— 《礼记·中庸》</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -705,7 +719,7 @@
               <span class="links-of-author-item">
                 <a href="https://juejin.im/user/5709f5798ac247004c295d95/posts" target="_blank" title="掘金">
                   
-                    <i class="fa fa-fw fa-juejin"></i>
+                    <i class="fa fa-fw fa-accusoft"></i>
                   
                     
                       掘金
@@ -716,10 +730,21 @@
               <span class="links-of-author-item">
                 <a href="https://www.cnblogs.com/Jetictors/" target="_blank" title="博客园">
                   
-                    <i class="fa fa-fw fa-blog"></i>
+                    <i class="fa fa-fw fa-bitcoin"></i>
                   
                     
                       博客园
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
                     
                 </a>
               </span>
@@ -775,9 +800,9 @@
   &copy;  2017 - 
   <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-heartbeat"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">Jetictors</span>
 </div>
 
 
@@ -800,6 +825,7 @@
   </a>
 </div>
 -->
+
 
 
 <div class="theme-info">
@@ -952,5 +978,8 @@
 
   
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":"koharu","bottom":-30,"mobileShow":false,"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/"});</script></body>
 </html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

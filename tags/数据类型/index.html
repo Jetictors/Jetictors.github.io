@@ -63,8 +63,6 @@
   
 
   
-
-  
     
       
     
@@ -82,8 +80,16 @@
 
   
     
+      
     
-    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -96,7 +102,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT, Jetictors" />
+  <meta name="keywords" content="Jetictors, Blog" />
 
 
 
@@ -112,13 +118,17 @@
 
 
 
+<meta name="description" content="凡事豫则立，不豫则废 ———— 《礼记·中庸》">
+<meta name="keywords" content="Jetictors, Blog">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Jetictors">
+<meta property="og:title" content="Jetictors&#39;Blogs">
 <meta property="og:url" content="http://yoursite.com/tags/数据类型/index.html">
-<meta property="og:site_name" content="Jetictors">
+<meta property="og:site_name" content="Jetictors&#39;Blogs">
+<meta property="og:description" content="凡事豫则立，不豫则废 ———— 《礼记·中庸》">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Jetictors">
+<meta name="twitter:title" content="Jetictors&#39;Blogs">
+<meta name="twitter:description" content="凡事豫则立，不豫则废 ———— 《礼记·中庸》">
 
 
 
@@ -153,7 +163,7 @@
 
 
 
-  <title>标签: 数据类型 | Jetictors</title>
+  <title>标签: 数据类型 | Jetictors'Blogs</title>
   
 
 
@@ -170,6 +180,14 @@
 
 
 </head>
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+
+undefined
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -193,12 +211,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Jetictors</span>
+        <span class="site-title">Jetictors'Blogs</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">热爱编程、技术，喜爱分享的小码农</p>
       
   </div>
 
@@ -221,7 +239,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-shouye"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -365,11 +383,11 @@
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="John Doe" />
-          <p class="site-author-name" itemprop="name">John Doe</p>
+               src="/uploads/avatar.jpg"
+               alt="Jetictors" />
+          <p class="site-author-name" itemprop="name">Jetictors</p>
            
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">凡事豫则立，不豫则废 ———— 《礼记·中庸》</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -417,7 +435,7 @@
               <span class="links-of-author-item">
                 <a href="https://juejin.im/user/5709f5798ac247004c295d95/posts" target="_blank" title="掘金">
                   
-                    <i class="fa fa-fw fa-juejin"></i>
+                    <i class="fa fa-fw fa-accusoft"></i>
                   
                     
                       掘金
@@ -428,10 +446,21 @@
               <span class="links-of-author-item">
                 <a href="https://www.cnblogs.com/Jetictors/" target="_blank" title="博客园">
                   
-                    <i class="fa fa-fw fa-blog"></i>
+                    <i class="fa fa-fw fa-bitcoin"></i>
                   
                     
                       博客园
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
                     
                 </a>
               </span>
@@ -471,9 +500,9 @@
   &copy;  2017 - 
   <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-heartbeat"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">Jetictors</span>
 </div>
 
 
@@ -496,6 +525,7 @@
   </a>
 </div>
 -->
+
 
 
 <div class="theme-info">
@@ -648,5 +678,8 @@
 
   
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":"koharu","bottom":-30,"mobileShow":false,"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/"});</script></body>
 </html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>

@@ -63,8 +63,6 @@
   
 
   
-
-  
     
       
     
@@ -82,8 +80,16 @@
 
   
     
+      
     
-    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
   
 
 
@@ -117,7 +123,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kotlin从无到有系列之控制语句">
 <meta property="og:url" content="http://yoursite.com/2017/09/24/kotlin-2017-09-24-kotlin-control/index.html">
-<meta property="og:site_name" content="Jetictors">
+<meta property="og:site_name" content="Jetictors&#39;Blogs">
 <meta property="og:description" content="在前面 的章节中讲解了Kotlin语言中的数据类型、变量与常量的定义。不了解请参见前面的内容：  Kotlin从无到有系列之数据类型介绍。 Kotlin从无到有系列之变量、常量、注释的使用。  下面详细为大家讲解Kotlin中的控制语句使用。不得不说其和Java中还是有很多不一样的地方。 目录 一、if语句 在Kotlin中的if语句和Java还是还是有一定的区别的，它能在Java中更灵活，除了">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/6304125-edffe5f4c73c7157.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -161,7 +167,7 @@
 
 
 
-  <title>Kotlin从无到有系列之控制语句 | Jetictors</title>
+  <title>Kotlin从无到有系列之控制语句 | Jetictors'Blogs</title>
   
 
 
@@ -178,6 +184,14 @@
 
 
 </head>
+
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+
+undefined
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -201,12 +215,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Jetictors</span>
+        <span class="site-title">Jetictors'Blogs</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">热爱编程、技术，喜爱分享的小码农</p>
       
   </div>
 
@@ -229,7 +243,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-shouye"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -311,13 +325,13 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/24/kotlin-2017-09-24-kotlin-control/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="Jetictors">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Jetictors">
+      <meta itemprop="name" content="Jetictors'Blogs">
     </span>
 
     
@@ -912,8 +926,8 @@ i =&gt; 9
     
       <div>
         <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
-    <img id="wechat_subscriber_qcode" src="/path/to/your/wechatqcode ex. /uploads/wechat-qcode.jpg" alt="John Doe wechat" style="width: 200px; max-width: 100%;"/>
-    <div>欢迎加入kotlin交流群，群号</div>
+    <img id="wechat_subscriber_qcode" src="/uploads/qq_qcode.jpg" alt="Jetictors wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎加入kotlin交流群，群号 497071402</div>
 </div>
 
       </div>
@@ -930,14 +944,14 @@ i =&gt; 9
 
     
       <div id="wechat" style="display: inline-block">
-        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="John Doe WeChat Pay"/>
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="Jetictors WeChat Pay"/>
         <p>WeChat Pay</p>
       </div>
     
 
     
       <div id="alipay" style="display: inline-block">
-        <img id="alipay_qr" src="/images/alipay.jpg" alt="John Doe Alipay"/>
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="Jetictors Alipay"/>
         <p>Alipay</p>
       </div>
     
@@ -967,9 +981,9 @@ i =&gt; 9
       
         <div class="post-tags">
           
-            <a href="/tags/Kotlin/" rel="tag"># Kotlin</a>
+            <a href="/tags/Kotlin/" rel="tag"><i class="fa fa-tag"></i> Kotlin</a>
           
-            <a href="/tags/kotlin控制流程/" rel="tag"># kotlin控制流程</a>
+            <a href="/tags/kotlin控制流程/" rel="tag"><i class="fa fa-tag"></i> kotlin控制流程</a>
           
         </div>
       
@@ -1059,11 +1073,11 @@ i =&gt; 9
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="John Doe" />
-          <p class="site-author-name" itemprop="name">John Doe</p>
+               src="/uploads/avatar.jpg"
+               alt="Jetictors" />
+          <p class="site-author-name" itemprop="name">Jetictors</p>
            
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">凡事豫则立，不豫则废 ———— 《礼记·中庸》</p>
           
         </div>
         <nav class="site-state motion-element">
@@ -1111,7 +1125,7 @@ i =&gt; 9
               <span class="links-of-author-item">
                 <a href="https://juejin.im/user/5709f5798ac247004c295d95/posts" target="_blank" title="掘金">
                   
-                    <i class="fa fa-fw fa-juejin"></i>
+                    <i class="fa fa-fw fa-accusoft"></i>
                   
                     
                       掘金
@@ -1122,10 +1136,21 @@ i =&gt; 9
               <span class="links-of-author-item">
                 <a href="https://www.cnblogs.com/Jetictors/" target="_blank" title="博客园">
                   
-                    <i class="fa fa-fw fa-blog"></i>
+                    <i class="fa fa-fw fa-bitcoin"></i>
                   
                     
                       博客园
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank" title="E-Mail">
+                  
+                    <i class="fa fa-fw fa-envelope"></i>
+                  
+                    
+                      E-Mail
                     
                 </a>
               </span>
@@ -1181,9 +1206,9 @@ i =&gt; 9
   &copy;  2017 - 
   <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-heartbeat"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">Jetictors</span>
 </div>
 
 
@@ -1206,6 +1231,7 @@ i =&gt; 9
   </a>
 </div>
 -->
+
 
 
 <div class="theme-info">
@@ -1358,5 +1384,8 @@ i =&gt; 9
 
   
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":"koharu","bottom":-30,"mobileShow":false,"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/"});</script></body>
 </html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
