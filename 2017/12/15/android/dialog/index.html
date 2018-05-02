@@ -1,0 +1,323 @@
+<!-- build time:Thu May 03 2018 01:40:59 GMT+0800 (中国标准时间) --><!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#222"><script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script><link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet"><style>.pace .pace-progress{background:#28004D;height:2px}.pace .pace-progress-inner{box-shadow:0 0 10px #1E92FB,0 0 5px #1E92FB}.pace .pace-activity{border-top-color:#1E92FB;border-left-color:#1E92FB}</style><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css"><meta name="keywords" content="Android,Dialog,"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2"><meta name="description" content="在实际应用开发中，用到系统对话框中的情况几乎是没有的。按开发流程来说，UI工程师都会给出每一个弹窗的样式，故而在实际开发中都是自定义弹窗的。 即使用到的地方不多，但是我们也是需要了解并且能熟练的运用它，下面为大家奉上各种系统对话框的实现。全当做我们对Android基础的一个复习"><meta name="keywords" content="Android,Dialog"><meta property="og:type" content="article"><meta property="og:title" content="Android——最全的系统对话框（AlertDialog）详解"><meta property="og:url" content="http://yoursite.com/2017/12/15/android/dialog/index.html"><meta property="og:site_name" content="Jetictors&#39;Blogs"><meta property="og:description" content="在实际应用开发中，用到系统对话框中的情况几乎是没有的。按开发流程来说，UI工程师都会给出每一个弹窗的样式，故而在实际开发中都是自定义弹窗的。 即使用到的地方不多，但是我们也是需要了解并且能熟练的运用它，下面为大家奉上各种系统对话框的实现。全当做我们对Android基础的一个复习"><meta property="og:locale" content="zh-Hans"><meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/15/16055ceadfe9b970?w=964&h=507&f=png&s=20524"><meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/15/16055c8c6e504916?w=289&h=149&f=png&s=11301"><meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/15/16055c8c6c22bd81?w=289&h=151&f=png&s=17780"><meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/15/16055c8c65f37dd8?w=289&h=373&f=png&s=21052"><meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/15/16055c8c8af660a1?w=285&h=284&f=png&s=20515"><meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/15/16055c8c8cd9e7b1?w=288&h=286&f=png&s=25838"><meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/15/16055c8c8fcb351f?w=289&h=143&f=png&s=9370"><meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/15/16055c8ca0763f81?w=290&h=157&f=png&s=22684"><meta property="og:updated_time" content="2018-05-02T17:34:02.131Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Android——最全的系统对话框（AlertDialog）详解"><meta name="twitter:description" content="在实际应用开发中，用到系统对话框中的情况几乎是没有的。按开发流程来说，UI工程师都会给出每一个弹窗的样式，故而在实际开发中都是自定义弹窗的。 即使用到的地方不多，但是我们也是需要了解并且能熟练的运用它，下面为大家奉上各种系统对话框的实现。全当做我们对Android基础的一个复习"><meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2017/12/15/16055ceadfe9b970?w=964&h=507&f=png&s=20524"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Pisces",sidebar:{position:"left",display:"post",offset:12,offset_float:12,b2t:!1,scrollpercent:!1,onmobile:!1},fancybox:!0,tabs:!0,motion:!0,duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="http://yoursite.com/2017/12/15/android/dialog/"><title>Android——最全的系统对话框（AlertDialog）详解 | Jetictors'Blogs</title></head><canvas class="fireworks" style="position:fixed;left:0;top:0;z-index:1;pointer-events:none"></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script><script type="text/javascript" src="/js/src/fireworks.js"></script><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><a href="https://github.com/Jetictors"><img style="position:absolute;top:0;right:0;border:0" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">Jetictors'Blogs</span> <span class="logo-line-after"><i></i></span></a></div><p class="site-subtitle">热爱编程、技术，喜爱分享的小码农</p></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于</a></li></ul></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/15/android/dialog/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="Jetictors"><meta itemprop="description" content=""><meta itemprop="image" content="/uploads/avatar.jpg"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="Jetictors'Blogs"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Android——最全的系统对话框（AlertDialog）详解</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-15T00:00:00+08:00">2017-12-15 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span></span><div class="post-wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i> </span><span class="post-meta-item-text">字数统计</span> <span title="字数统计">1,768字 </span><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i> </span><span class="post-meta-item-text">阅读时长</span> <span title="阅读时长">9分钟</span></div></div></header><div class="post-body" itemprop="articleBody"><p>在实际应用开发中，用到系统对话框中的情况几乎是没有的。按开发流程来说，UI工程师都会给出每一个弹窗的样式，故而在实际开发中都是自定义弹窗的。 即使用到的地方不多，但是我们也是需要了解并且能熟练的运用它，下面为大家奉上各种系统对话框的实现。全当做我们对Android基础的一个复习</p><a id="more"></a><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p><img src="https://user-gold-cdn.xitu.io/2017/12/15/16055ceadfe9b970?w=964&amp;h=507&amp;f=png&amp;s=20524" alt=""></p><h2 id="系统对话框的几种类型与实现"><a href="#系统对话框的几种类型与实现" class="headerlink" title="系统对话框的几种类型与实现"></a>系统对话框的几种类型与实现</h2><p>在项目的实际开发中，用到的系统对话框几乎是没有的。原因大概包含以下几点：</p><blockquote><ul><li>样式过于单一，不能满足大部分实际项目中的需求。</li><li>对话框的样式会根据手机系统版本的不同而变化。不能达到统一的样式。</li><li>能实现的功能过于简单。</li></ul></blockquote><p>在这里先附上下面代码中出现文本的<code>string.xml</code>文件。</p><pre><code>&lt;string name=&quot;dialog_normal_content&quot;&gt;我是普通dialog&lt;/string&gt;
+&lt;string name=&quot;dialog_normal_more_button_content&quot;&gt;我是普通多按钮dialog&lt;/string&gt;
+&lt;string name=&quot;dialog_btn_confirm_text&quot;&gt;确定&lt;/string&gt;
+&lt;string name=&quot;dialog_btn_cancel_text&quot;&gt;取消&lt;/string&gt;
+&lt;string name=&quot;dialog_btn_neutral_text&quot;&gt;忽略&lt;/string&gt;
+&lt;string name=&quot;dialog_btn_confirm_hint_text&quot;&gt;您点击了确定按钮&lt;/string&gt;
+&lt;string name=&quot;dialog_btn_cancel_hint_text&quot;&gt;您点击了取消按钮&lt;/string&gt;
+&lt;string name=&quot;dialog_btn_neutral_hint_text&quot;&gt;您点击了忽略按钮&lt;/string&gt;
+</code></pre><p><strong>1、普通对话框</strong></p><p>在实际项目开发中，此类型对话框中用到的地方要比其他类型的对话框多一些。但是考虑<code>UI</code>统一问题，也会很少用。</p><p><em>运行截图：</em><br><img src="https://user-gold-cdn.xitu.io/2017/12/15/16055c8c6e504916?w=289&amp;h=149&amp;f=png&amp;s=11301" alt=""></p><p><em>代码：</em></p><pre><code>private void showNormalDialog(){
+  //创建dialog构造器
+  AlertDialog.Builder normalDialog = new AlertDialog.Builder(this);
+  //设置title
+  normalDialog.setTitle(getString(R.string.dialog_normal_text));
+  //设置icon
+  normalDialog.setIcon(R.mipmap.ic_launcher_round);
+  //设置内容
+  normalDialog.setMessage(getString(R.string.dialog_normal_content));
+  //设置按钮
+  normalDialog.setPositiveButton(getString(R.string.dialog_btn_confirm_text)
+          , new DialogInterface.OnClickListener() {
+      @Override
+      public void onClick(DialogInterface dialog, int which) {
+          Toast.makeText(DialogActivity.this,getString(R.string.dialog_btn_confirm_hint_text)
+                  ,Toast.LENGTH_SHORT).show();
+          dialog.dismiss();
+      }
+  });
+  //创建并显示
+  normalDialog.create().show();
+}
+</code></pre><p>系统对话框都是支持链式调用的，举例：</p><pre><code>new AlertDialog.Builder(this)
+        .setTitle(getString(R.string.dialog_normal_text))
+        .setIcon(R.mipmap.ic_launcher_round)
+        .setMessage(getString(R.string.dialog_normal_content))
+        .setPositiveButton(getString(R.string.dialog_btn_confirm_text)
+                , new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(DialogActivity.this,getString(R.string.dialog_btn_confirm_hint_text)
+                        ,Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        })
+        .create()
+        .show();
+</code></pre><p>下面的代码都是可以用链式调用的，这里就不展示了。</p><p><strong>2、普通对话框(多按钮)</strong></p><p>在系统对话框中最多出现三个按钮，即<code>PositiveButton</code>（确定）、<code>NegativeButton</code>（取消）、<code>NeutralButton</code>（忽略）。</p><p><em>运行截图：</em></p><p><img src="https://user-gold-cdn.xitu.io/2017/12/15/16055c8c6c22bd81?w=289&amp;h=151&amp;f=png&amp;s=17780" alt=""></p><p><em>代码：</em></p><pre><code>private void showNormalMoreButtonDialog(){
+  AlertDialog.Builder normalMoreButtonDialog = new AlertDialog.Builder(this);
+  normalMoreButtonDialog.setTitle(getString(R.string.dialog_normal_more_button_text));
+  normalMoreButtonDialog.setIcon(R.mipmap.ic_launcher_round);
+  normalMoreButtonDialog.setMessage(getString(R.string.dialog_normal_more_button_content));
+
+  //设置按钮
+  normalMoreButtonDialog.setPositiveButton(getString(R.string.dialog_btn_confirm_text)
+          , new DialogInterface.OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog, int which) {
+                  Toast.makeText(DialogActivity.this
+                          ,getString(R.string.dialog_btn_confirm_hint_text),Toast.LENGTH_SHORT).show();
+                  dialog.dismiss();
+              }
+          });
+  normalMoreButtonDialog.setNegativeButton(getString(R.string.dialog_btn_cancel_text)
+          , new DialogInterface.OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog, int which) {
+                  Toast.makeText(DialogActivity.this,
+                          getString(R.string.dialog_btn_cancel_hint_text),Toast.LENGTH_SHORT).show();
+                  dialog.dismiss();
+              }
+          });
+  normalMoreButtonDialog.setNeutralButton(getString(R.string.dialog_btn_neutral_text)
+          , new DialogInterface.OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog, int which) {
+                  Toast.makeText(DialogActivity.this,
+                          getString(R.string.dialog_btn_neutral_hint_text),Toast.LENGTH_SHORT).show();
+                  dialog.dismiss();
+              }
+          });
+
+  normalMoreButtonDialog.create().show();
+}
+</code></pre><p>也可以用下面的实现方式，和上面的代码效果是一样的。</p><pre><code>private void showNormalMoreButtonDialog(){
+  DialogInterface.OnClickListener setListener = null;
+
+  AlertDialog.Builder normalMoreButtonDialog = new AlertDialog.Builder(this);
+  normalMoreButtonDialog.setTitle(getString(R.string.dialog_normal_more_button_text));
+  normalMoreButtonDialog.setIcon(R.mipmap.ic_launcher_round);
+  normalMoreButtonDialog.setMessage(getString(R.string.dialog_normal_more_button_content));
+
+  setListener = new DialogInterface.OnClickListener() {
+      @Override
+      public void onClick(DialogInterface dialog, int which) {
+          switch (which){
+              case DialogInterface.BUTTON_POSITIVE:
+                  Toast.makeText(DialogActivity.this,
+                          getString(R.string.dialog_btn_confirm_hint_text),Toast.LENGTH_SHORT).show();
+                  dialog.dismiss();
+                  break;
+              case DialogInterface.BUTTON_NEUTRAL:
+                  Toast.makeText(DialogActivity.this
+                          ,getString(R.string.dialog_btn_neutral_hint_text),Toast.LENGTH_SHORT).show();
+                  dialog.dismiss();
+                  break;
+              case DialogInterface.BUTTON_NEGATIVE:
+                  Toast.makeText(DialogActivity.this
+                          ,getString(R.string.dialog_btn_cancel_hint_text),Toast.LENGTH_SHORT).show();
+                  dialog.dismiss();
+                  break;
+          }
+      }
+  };
+  normalMoreButtonDialog.setPositiveButton(getString(R.string.dialog_btn_confirm_text),setListener);
+  normalMoreButtonDialog.setNegativeButton(getString(R.string.dialog_btn_cancel_text),setListener);
+  normalMoreButtonDialog.setNeutralButton(getString(R.string.dialog_btn_neutral_text),setListener);
+
+  normalMoreButtonDialog.create().show();
+}
+</code></pre><p><strong>3、普通列表对话框</strong></p><p>此种类型的对话框能实现简单的列表。</p><p><em>运行截图：</em></p><p><img src="https://user-gold-cdn.xitu.io/2017/12/15/16055c8c65f37dd8?w=289&amp;h=373&amp;f=png&amp;s=21052" alt=""></p><p><em>代码：</em></p><pre><code>/**
+ * 普通列表dialog
+ */
+private void showListDialog(){
+  final String listItems[] = new String[]{&quot;listItems1&quot;,&quot;listItems2&quot;,&quot;listItems3&quot;,
+          &quot;listItems4&quot;,&quot;listItems5&quot;,&quot;listItems6&quot;};
+
+  AlertDialog.Builder listDialog = new AlertDialog.Builder(this);
+  listDialog.setTitle(getString(R.string.dialog_list_text));
+  listDialog.setIcon(R.mipmap.ic_launcher_round);
+
+  /*
+      设置item 不能用setMessage()
+      用setItems
+      items : listItems[] -&gt; 列表项数组
+      listener -&gt; 回调接口
+  */
+  listDialog.setItems(listItems,new DialogInterface.OnClickListener() {
+      @Override
+      public void onClick(DialogInterface dialog, int which) {
+          Toast.makeText(DialogActivity.this,listItems[which],Toast.LENGTH_SHORT).show();
+      }
+  });
+
+  //设置按钮
+  listDialog.setPositiveButton(getString(R.string.dialog_btn_confirm_text)
+          , new DialogInterface.OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog, int which) {
+                  dialog.dismiss();
+              }
+          });
+
+  listDialog.create().show();
+}
+</code></pre><p><strong>4、单选对话框</strong></p><p><em>运行截图：</em></p><p><img src="https://user-gold-cdn.xitu.io/2017/12/15/16055c8c8af660a1?w=285&amp;h=284&amp;f=png&amp;s=20515" alt=""></p><p><em>代码：</em></p><pre><code>private void showRadioDialog(){
+  final String radioItems[] = new String[]{&quot;radioItem1&quot;,&quot;radioItem1&quot;,&quot;radioItem1&quot;,&quot;radioItem1&quot;};
+
+  AlertDialog.Builder radioDialog = new AlertDialog.Builder(this);
+  radioDialog.setTitle(getString(R.string.dialog_radio_text));
+  radioDialog.setIcon(R.mipmap.ic_launcher_round);
+
+  /*
+      设置item 不能用setMessage()
+      用setSingleChoiceItems
+      items : radioItems[] -&gt; 单选选项数组
+      checkItem : 0 -&gt; 默认选中的item
+      listener -&gt; 回调接口
+  */
+  radioDialog.setSingleChoiceItems(radioItems, 0, new DialogInterface.OnClickListener() {
+      @Override
+      public void onClick(DialogInterface dialog, int which) {
+          Toast.makeText(DialogActivity.this,radioItems[which],Toast.LENGTH_SHORT).show();
+      }
+  });
+
+  //设置按钮
+  radioDialog.setPositiveButton(getString(R.string.dialog_btn_confirm_text)
+          , new DialogInterface.OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog, int which) {
+                  dialog.dismiss();
+              }
+          });
+
+  radioDialog.create().show();
+}
+</code></pre><p><strong>5、多选对话框</strong></p><p><em>运行截图：</em></p><p><img src="https://user-gold-cdn.xitu.io/2017/12/15/16055c8c8cd9e7b1?w=288&amp;h=286&amp;f=png&amp;s=25838" alt=""></p><p><em>代码：</em><br>private void showCheckBoxDialog(){</p><pre><code>  final String checkBoxItems[] = new String[]{&quot;checkBoxItems1&quot;,&quot;checkBoxItems2&quot;,
+          &quot;checkBoxItems3&quot;,&quot;checkBoxItems4&quot;};
+  final boolean isCheck[] = new boolean[]{false,true,true,false};
+
+  AlertDialog.Builder checkBoxDialog = new AlertDialog.Builder(this);
+  checkBoxDialog.setTitle(getString(R.string.dialog_check_box_text));
+  checkBoxDialog.setIcon(R.mipmap.ic_launcher_round);
+
+  /*
+      设置item 不能用setMessage()
+      用setMultiChoiceItems
+      items : radioItems[] -&gt; 多选选项数组
+      checkItems : isCheck[] -&gt; 是否选中数组
+      listener -&gt; 回调接口
+  */
+  checkBoxDialog.setMultiChoiceItems(checkBoxItems, isCheck
+          , new DialogInterface.OnMultiChoiceClickListener() {
+      @Override
+      public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+          if (isChecked){
+              Toast.makeText(DialogActivity.this,
+                      checkBoxItems[which] + &quot;   选中&quot;,Toast.LENGTH_SHORT).show();
+          }else {
+              Toast.makeText(DialogActivity.this,
+                      checkBoxItems[which] + &quot;   未选中&quot;,Toast.LENGTH_SHORT).show();
+          }
+      }
+  });
+
+  //设置按钮
+  checkBoxDialog.setPositiveButton(getString(R.string.dialog_btn_confirm_text)
+          , new DialogInterface.OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog, int which) {
+                  dialog.dismiss();
+              }
+          });
+
+  checkBoxDialog.create().show();
+}
+</code></pre><p><strong>6、带输入框的弹窗</strong></p><p><em>运行截图：</em></p><p><img src="https://user-gold-cdn.xitu.io/2017/12/15/16055c8c8fcb351f?w=289&amp;h=143&amp;f=png&amp;s=9370" alt=""></p><p><em>代码：</em><br>private void showEditDialog(){</p><pre><code>  final EditText edit = new EditText(this);
+
+  AlertDialog.Builder editDialog = new AlertDialog.Builder(this);
+  editDialog.setTitle(getString(R.string.dialog_edit_text));
+  editDialog.setIcon(R.mipmap.ic_launcher_round);
+
+  //设置dialog布局
+  editDialog.setView(edit);
+
+  //设置按钮
+  editDialog.setPositiveButton(getString(R.string.dialog_btn_confirm_text)
+          , new DialogInterface.OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog, int which) {
+                  Toast.makeText(DialogActivity.this,
+                          edit.getText().toString().trim(),Toast.LENGTH_SHORT).show();
+                  dialog.dismiss();
+              }
+          });
+
+  editDialog.create().show();
+}
+</code></pre><p><strong>7、自定义布局的对话框</strong></p><p>此类型的对话框在实际项目开发中用到的地方比提示对话框用到的地方要多一些，不过在项目几乎上都是自定义的对话框…</p><p><em>运行截图：</em></p><p><img src="https://user-gold-cdn.xitu.io/2017/12/15/16055c8ca0763f81?w=290&amp;h=157&amp;f=png&amp;s=22684" alt=""></p><p><em>布局文件：custom_dialog_layout.xml</em><br>&lt;?xml version=”1.0” encoding=”utf-8”?&gt;<br><linearlayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent" android:padding="12dp"></linearlayout></p><pre><code>    &lt;TextView
+         android:id=&quot;@+id/dialog_text&quot;
+         android:layout_width=&quot;match_parent&quot;
+         android:layout_height=&quot;wrap_content&quot;
+         android:textSize=&quot;15sp&quot;
+         android:textColor=&quot;@color/colorPrimary&quot;
+         android:gravity=&quot;center&quot;
+         android:padding=&quot;12dp&quot;/&gt;
+
+    &lt;RelativeLayout
+         android:layout_width=&quot;match_parent&quot;
+         android:layout_height=&quot;wrap_content&quot;&gt;
+
+         &lt;ImageView
+             android:layout_width=&quot;wrap_content&quot;
+             android:layout_height=&quot;wrap_content&quot;
+             android:src=&quot;@mipmap/ic_launcher&quot;/&gt;
+
+        &lt;Button
+            android:id=&quot;@+id/dialog_btn_confirm&quot;
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:textColor=&quot;@color/colorAccent&quot;
+            android:textSize=&quot;15sp&quot;
+            android:text=&quot;@string/dialog_btn_confirm_text&quot;
+            android:layout_centerHorizontal=&quot;true&quot;/&gt;
+
+        &lt;Button
+            android:id=&quot;@+id/dialog_btn_cancel&quot;
+            android:layout_width=&quot;wrap_content&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:textColor=&quot;@color/colorAccent&quot;
+            android:textSize=&quot;15sp&quot;
+            android:text=&quot;@string/dialog_btn_cancel_text&quot;
+            android:layout_centerHorizontal=&quot;true&quot;
+            android:layout_alignParentRight=&quot;true&quot;/&gt;
+
+    &lt;/RelativeLayout&gt;
+
+&lt;/LinearLayout&gt;
+</code></pre><p><em>代码：</em></p><pre><code>private void showLayoutDialog() {
+  //加载布局并初始化组件
+  View dialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog_layout,null);
+  TextView dialogText = (TextView) dialogView.findViewById(R.id.dialog_text);
+  Button dialogBtnConfirm = (Button) dialogView.findViewById(R.id.dialog_btn_confirm);
+  Button dialogBtnCancel = (Button) dialogView.findViewById(R.id.dialog_btn_cancel);
+
+  final AlertDialog.Builder layoutDialog = new AlertDialog.Builder(this);
+  layoutDialog.setTitle(getString(R.string.dialog_custom_layout_text));
+  layoutDialog.setIcon(R.mipmap.ic_launcher_round);
+
+  layoutDialog.setView(dialogView);
+
+  //设置组件
+  dialogText.setText(&quot;我是自定义layout的弹窗！！&quot;);
+  dialogBtnConfirm .setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+          Toast.makeText(DialogActivity.this,&quot;我是自定义layout的弹窗！！&quot;,Toast.LENGTH_SHORT).show();
+      }
+  });
+  dialogBtnConfirm .setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+          layoutDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+              @Override
+              public void onDismiss(DialogInterface dialog) {
+                  dialog.dismiss();
+              }
+          });
+      }
+  });
+
+  layoutDialog.create().show();
+}
+</code></pre><p>以上就是<code>Android</code>系统弹窗的几种实现方式，几乎涵盖了能解决各种简单需求。其中自定义布局的方式奠定了自定义弹窗的基本实现。</p><h2 id="尾语"><a href="#尾语" class="headerlink" title="尾语"></a>尾语</h2><p>可以看出上面的几种实现方式都是通过<code>AlertDialog</code>类实现的。有兴趣的可以看<code>Android</code>源码中的<code>AlertDialog</code>类实现。</p></div><div><div id="wechat_subscriber" style="display:block;padding:10px 0;margin:20px auto;width:100%;text-align:center"><img id="wechat_subscriber_qcode" src="/uploads/qq_qcode.jpg" alt="Jetictors wechat" style="width:200px;max-width:100%"><div>欢迎加入kotlin交流群，群号 497071402</div></div></div><div><div style="padding:10px 0;margin:20px auto;width:90%;text-align:center"><div>坚持原创技术分享，您的支持将鼓励我继续创作！有钱的捧个钱场，没钱的捧个人场！谢谢大家了</div><button id="rewardButton" style="margin:12px 0 0 0" disable="enable" onclick='var e=document.getElementById("QR");"none"===e.style.display?e.style.display="block":e.style.display="none"'><span>赞赏</span></button><div id="QR" style="display:none"><div id="wechat" style="display:inline-block"><img id="wechat_qr" src="/images/wechatpay.jpg" alt="Jetictors WeChat Pay"><p>微信 Pay</p></div><div id="alipay" style="display:inline-block"><img id="alipay_qr" src="/images/alipay.jpg" alt="Jetictors Alipay"><p>支付宝</p></div></div></div></div><div><div><div style="text-align:center;color:#ccc;font-size:14px">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div></div></div><footer class="post-footer"><div class="post-tags"><a href="/tags/Android/" rel="tag"><i class="fa fa-tag"></i> Android</a> <a href="/tags/Dialog/" rel="tag"><i class="fa fa-tag"></i> Dialog</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/2017/12/15/kotlin/可见性修饰符/" rel="next" title="Kotlin——从无到有系列之中级篇（三）：可见性修饰符详解"><i class="fa fa-chevron-left"></i> Kotlin——从无到有系列之中级篇（三）：可见性修饰符详解</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"><a href="/2017/12/18/kotlin/接口与枚举类/" rel="prev" title="Kotlin——从无到有系列之中级篇（五）：枚举类（Enum）、接口类（Interface）详解">Kotlin——从无到有系列之中级篇（五）：枚举类（Enum）、接口类（Interface）详解 <i class="fa fa-chevron-right"></i></a></div></div></footer></div></article><div class="post-spread"><div class="jiathis_style"><a class="jiathis_button_tsina"></a> <a class="jiathis_button_tqq"></a> <a class="jiathis_button_weixin"></a> <a class="jiathis_button_cqq"></a> <a class="jiathis_button_douban"></a> <a class="jiathis_button_renren"></a> <a class="jiathis_button_qzone"></a> <a class="jiathis_button_kaixin001"></a> <a class="jiathis_button_copy"></a> <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a> <a class="jiathis_counter_style"></a></div><script type="text/javascript">var jiathis_config={hideMore:!1}</script><script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script></div></div></div><div class="comments" id="comments"></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">文章目录</li><li class="sidebar-nav-overview" data-target="site-overview">站点概览</li></ul><section class="site-overview sidebar-panel"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="Jetictors"><p class="site-author-name" itemprop="name">Jetictors</p><p class="site-description motion-element" itemprop="description">凡事豫则立，不豫则废 ———— 《礼记·中庸》</p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives/"><span class="site-state-item-count">17</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/index.html"><span class="site-state-item-count">3</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/index.html"><span class="site-state-item-count">25</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/Jetictors" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i> GitHub </a></span><span class="links-of-author-item"><a href="" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i> E-Mail </a></span><span class="links-of-author-item"><a href="https://www.cnblogs.com/Jetictors/" target="_blank" title="博客园"><i class="fa fa-fw fa-bitcoin"></i> 博客园 </a></span><span class="links-of-author-item"><a href="https://juejin.im/user/5709f5798ac247004c295d95/posts" target="_blank" title="掘金"><i class="fa fa-fw fa-bitcoin"></i> 掘金</a></span></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统对话框的几种类型与实现"><span class="nav-number">2.</span> <span class="nav-text">系统对话框的几种类型与实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#尾语"><span class="nav-number">3.</span> <span class="nav-text">尾语</span></a></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><div class="copyright">&copy; 2017 - <span itemprop="copyrightYear">2018</span> <span class="with-love"><i class="fa fa-heartbeat"></i> </span><span class="author" itemprop="copyrightHolder">Jetictors</span></div><div class="powered-by"><i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv"> 本站访客数:<span id="busuanzi_value_site_uv"></span></span></div><div class="theme-info"><div class="powered-by"></div><span class="post-count">博客全站共38.9k字</span></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script></body></html><script type="text/javascript" src="/js/src/love.js"></script><!-- rebuild by neat -->

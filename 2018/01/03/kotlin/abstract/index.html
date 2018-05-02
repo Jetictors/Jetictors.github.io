@@ -1,0 +1,164 @@
+<!-- build time:Thu May 03 2018 01:40:59 GMT+0800 (中国标准时间) --><!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#222"><script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script><link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet"><style>.pace .pace-progress{background:#28004D;height:2px}.pace .pace-progress-inner{box-shadow:0 0 10px #1E92FB,0 0 5px #1E92FB}.pace .pace-activity{border-top-color:#1E92FB;border-left-color:#1E92FB}</style><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css"><meta name="keywords" content="Kotlin,kotlin抽象类,kotlin内部类,"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2"><meta name="description" content="在前面几个章节中，详细的介绍了Kotlin类的类别中的数据类、密封类、接口类以及枚举类。在这个章节中会对Koltin的抽象类和内部类作出一个详细的讲解。如果对上面所提到的类的类别还不是很清晰的，请阅读我的前几篇文章。"><meta name="keywords" content="Kotlin,kotlin抽象类,kotlin内部类"><meta property="og:type" content="article"><meta property="og:title" content="Kotlin——从无到有系列之中级篇（七）：抽象类（abstract）、内部类（嵌套类）详解"><meta property="og:url" content="http://yoursite.com/2018/01/03/kotlin/abstract/index.html"><meta property="og:site_name" content="Jetictors&#39;Blogs"><meta property="og:description" content="在前面几个章节中，详细的介绍了Kotlin类的类别中的数据类、密封类、接口类以及枚举类。在这个章节中会对Koltin的抽象类和内部类作出一个详细的讲解。如果对上面所提到的类的类别还不是很清晰的，请阅读我的前几篇文章。"><meta property="og:locale" content="zh-Hans"><meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/1/3/160b80e78fde53ea?w=891&h=440&f=png&s=24430"><meta property="og:updated_time" content="2018-05-02T16:59:46.919Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Kotlin——从无到有系列之中级篇（七）：抽象类（abstract）、内部类（嵌套类）详解"><meta name="twitter:description" content="在前面几个章节中，详细的介绍了Kotlin类的类别中的数据类、密封类、接口类以及枚举类。在这个章节中会对Koltin的抽象类和内部类作出一个详细的讲解。如果对上面所提到的类的类别还不是很清晰的，请阅读我的前几篇文章。"><meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/1/3/160b80e78fde53ea?w=891&h=440&f=png&s=24430"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Pisces",sidebar:{position:"left",display:"post",offset:12,offset_float:12,b2t:!1,scrollpercent:!1,onmobile:!1},fancybox:!0,tabs:!0,motion:!0,duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="http://yoursite.com/2018/01/03/kotlin/abstract/"><title>Kotlin——从无到有系列之中级篇（七）：抽象类（abstract）、内部类（嵌套类）详解 | Jetictors'Blogs</title></head><canvas class="fireworks" style="position:fixed;left:0;top:0;z-index:1;pointer-events:none"></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script><script type="text/javascript" src="/js/src/fireworks.js"></script><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><a href="https://github.com/Jetictors"><img style="position:absolute;top:0;right:0;border:0" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">Jetictors'Blogs</span> <span class="logo-line-after"><i></i></span></a></div><p class="site-subtitle">热爱编程、技术，喜爱分享的小码农</p></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于</a></li></ul></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/03/kotlin/abstract/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="Jetictors"><meta itemprop="description" content=""><meta itemprop="image" content="/uploads/avatar.jpg"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="Jetictors'Blogs"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Kotlin——从无到有系列之中级篇（七）：抽象类（abstract）、内部类（嵌套类）详解</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-03T00:00:00+08:00">2018-01-03 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Kotlin/" itemprop="url" rel="index"><span itemprop="name">Kotlin</span></a></span></span><div class="post-wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i> </span><span class="post-meta-item-text">字数统计</span> <span title="字数统计">2,509字 </span><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i> </span><span class="post-meta-item-text">阅读时长</span> <span title="阅读时长">9分钟</span></div></div></header><div class="post-body" itemprop="articleBody"><p>在前面几个章节中，详细的介绍了<code>Kotlin</code>类的类别中的<code>数据类</code>、<code>密封类</code>、<code>接口类</code>以及<code>枚举类</code>。在这个章节中会对<code>Koltin</code>的<code>抽象类</code>和<code>内部类</code>作出一个详细的讲解。如果对上面所提到的类的类别还不是很清晰的，请阅读我的前几篇文章。</p><a id="more"></a><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p><img src="https://user-gold-cdn.xitu.io/2018/1/3/160b80e78fde53ea?w=891&amp;h=440&amp;f=png&amp;s=24430" alt=""></p><h2 id="一、抽象类"><a href="#一、抽象类" class="headerlink" title="一、抽象类"></a>一、抽象类</h2><blockquote><ul><li>我们知道，在实际的开发程序的时候，一般都会写一个基类，封装常用方法、以及处理一些共有的逻辑，但是程序逻辑是根据每个类不同的功能实现不同的代码。而这个所谓的基类，一般都是一个抽象类。不管是<code>Java</code>还是<code>Kotlin</code>，实现其抽象类的作用就在于此。那么什么是抽象类呢，它是怎么定义的，它又要怎么使用呢？</li></ul></blockquote><h3 id="1、抽象类的定义"><a href="#1、抽象类的定义" class="headerlink" title="1、抽象类的定义"></a>1、抽象类的定义</h3><blockquote><p>抽象类，可以理解为类定义了一个模板。所有的子类都是根据这个模板是填充自己的代码。</p></blockquote><p><strong>1.1、关键字</strong></p><blockquote><ul><li>声明一个抽象（类或函数）的关键字为：<code>abstract</code></li></ul></blockquote><p>其中值得注意的是：抽象可以分为抽象类、抽象函数、抽象属性。而一个抽象类和普通类的区别在于抽象类除了可以有其自己的属性、构造函数、方法等组成部分，还包含了抽象函数以及抽象属性。</p><p>例：</p><pre><code>abstract class Lanauage{
+    val TAG = this.javaClass.simpleName  // 自身的属性
+
+    // 自身的函数
+    fun test() : Unit{
+        // exp
+    }
+    abstract var name : String           // 抽象属性
+    abstract fun init()                  // 抽象方法
+}
+
+/**
+ * 抽象类Lanauage的实现类TestAbstarctA
+ */
+class TestAbstarctA : Lanauage(){
+
+    override var name: String
+        get() = &quot;Kotlin&quot;
+        set(value) {}
+
+    override fun init() {
+        println(&quot;我是$name&quot;)
+    }
+}
+
+/**
+ * 抽象类Lanauage的实现类TestAbstarctB
+ */
+class TestAbstarctB : Lanauage(){
+    override var name: String
+        get() = &quot;Java&quot;
+        set(value) {}
+
+    override fun init() {
+        println(&quot;我是$name&quot;)
+    }
+}
+
+fun main(args: Array&lt;String&gt;) {
+
+    // val lanauage = Lanauage() 是错误的，因为抽象类不能直接被实例化
+
+    val mTestAbstarctA = TestAbstarctA()
+    val mTestAbstarctB = TestAbstarctB()
+
+    println(mTestAbstarctA.name)
+    mTestAbstarctA.init()
+
+    println(mTestAbstarctB.name)
+    mTestAbstarctB.init()
+}
+</code></pre><p>输出结果为：</p><pre><code>Kotlin
+我是Kotlin
+Java
+我是Java
+</code></pre><p><strong>1.2、小结</strong></p><blockquote><ul><li>抽象类本身具有普通类特性，以及组成部分。不过值得注意的是，<strong>抽象类不能直接被实例化</strong></li><li>其抽象了类的子类必须全部重写带<code>abstract</code>修饰的属性和方法。</li><li>抽象成员只有定义，没有实现。都有<code>abstract</code>修饰符修饰。</li><li>抽象类是为其子类定义了一个模板。不同是类实现不同的功能</li></ul></blockquote><h3 id="2、抽象类的规则"><a href="#2、抽象类的规则" class="headerlink" title="2、抽象类的规则"></a>2、抽象类的规则</h3><blockquote><ul><li>在<code>Kotlin</code>中的抽象类在顶层定义的时候只能使用<code>public</code>可见性修饰符修饰。</li><li>抽象类中可以定义内部抽象类。</li><li>只能继承一个抽象类。</li><li>若要实现抽象类的实例化，需要依靠子类采用向上转型的方式处理。</li><li>抽象类可以继承自一个继承类，即抽象类可以作为子类。不过，抽象类建议不用<code>open</code>修饰符修饰，因为可以覆写抽象类的父类的函数。</li></ul></blockquote><p>例：</p><pre><code>open class Base{
+    open fun init(){}
+}
+
+abstract class Lanauage : Base(){
+    val TAG = this.javaClass.simpleName  // 自身的属性
+
+    // 自身的函数
+    fun test() : Unit{
+        // exp
+    }
+    abstract var name : String           // 抽象属性
+    abstract override fun init()         // 覆写父类的方法
+
+    abstract class Name(){}              // 嵌套抽象类，可查看第二节中的嵌套类使用
+}
+
+fun main(args: Array&lt;String&gt;) {
+    // 若要实现抽象类的实例化，需要依靠子类采用向上转型的方式处理。
+    val mLanauage : Lanauage = TestAbstarctB()
+}
+</code></pre><h3 id="3、抽象类的实际应用"><a href="#3、抽象类的实际应用" class="headerlink" title="3、抽象类的实际应用"></a>3、抽象类的实际应用</h3><blockquote><ul><li>在<code>Java</code>的设计模式中，有一种设计模式叫<code>模板设计模式</code>，其定义为：<ul><li>定义一个操作中算法的骨架，而将一些步骤延迟到子类中，模板方法使得子类可以不改变算法的结构即可重定义该算法的某些特定步骤。</li><li>通俗点的理解就是 ：完成一件事情，有固定的数个步骤，但是每个步骤根据对象的不同，而实现细节不同；就可以在父类中定义一个完成该事情的总方法，按照完成事件需要的步骤去调用其每个步骤的实现方法。每个步骤的具体实现，由子类完成。</li></ul></li></ul></blockquote><p><code>Kotlin</code>和<code>Java</code>是互通的，说明<code>Kotlin</code>也是支持这种设计模式的。<br>如果你对<code>Java</code>中的<strong>模板设计模式</strong>不是很了解的，请参见<a href="https://www.cnblogs.com/qq-361807535/p/6854191.html" target="_blank" rel="noopener">这篇文章</a></p><h2 id="二、内部类（嵌套类）"><a href="#二、内部类（嵌套类）" class="headerlink" title="二、内部类（嵌套类）"></a>二、内部类（嵌套类）</h2><blockquote><p>在实际开发中，用到内部类的地方是很多的。比如说：</p><ul><li>对于<code>Android</code>开发来说，列表适配器（<code>adapter</code>）中的<code>ViewHolder</code>类，就是一个内部类。</li><li>根据后台开发人员提供的<code>json</code>字符串生成的对象中，也包含另外一个对象，这也是一个内部类。</li></ul></blockquote><h3 id="1、嵌套类"><a href="#1、嵌套类" class="headerlink" title="1、嵌套类"></a>1、嵌套类</h3><p>上面提到的两种情况，是在开发中最常见的。当然，说到内部类，就必须世道另一个概念<strong>嵌套类</strong>，所谓的嵌套类：即指一个类可以嵌套在其他类中。</p><p>例：</p><pre><code>class Other{           // 外部类
+    val numOuther = 1
+
+    class Nested {      // 嵌套类
+        fun init(){
+            println(&quot;执行了init方法&quot;)
+        }
+    }
+}
+
+fun main(args: Array&lt;String&gt;) {
+    Other.Nested().init()      // 调用格式为：外部类.嵌套类().嵌套类方法/属性
+}
+</code></pre><p>输出结果为：</p><pre><code>执行了init方法
+</code></pre><p><strong>注意：</strong></p><blockquote><ul><li>调用嵌套类的属性或方法的格式为：<code>外部类.嵌套类().嵌套类方法/属性。在调用的时候嵌套类是需要实例化的</code>。</li><li>嵌套类不能使用外部类的属性和成员</li></ul></blockquote><h3 id="2、内部类"><a href="#2、内部类" class="headerlink" title="2、内部类"></a>2、内部类</h3><blockquote><p>在上面的例子中讲解了嵌套类的使用，而内部类和嵌套类还是有一定的区别的，而且内部类是有特定的关键字去声明的。</p></blockquote><h4 id="2-1、关键字"><a href="#2-1、关键字" class="headerlink" title="2.1、关键字"></a>2.1、关键字</h4><blockquote><p>声明一个内部类使用<code>inner</code>关键字。<br>声明格式：inner class 类名(参数){}</p></blockquote><p>例：</p><pre><code>class Other{            // 外部类
+    val numOther = 1
+
+    inner class InnerClass{     // 嵌套内部类
+        val name = &quot;InnerClass&quot;
+        fun init(){
+            println(&quot;我是内部类&quot;)
+        }
+    }
+}
+
+fun main(args: Array&lt;String&gt;) {
+   Other().InnerClass().init()  // 调用格式为：外部类().内部类().内部类方法/属性
+}
+</code></pre><p><strong>注意：</strong></p><blockquote><ul><li>调用内部类的属性或方法的格式为：<code>外部类().内部类().内部类方法/属性。在调用的时候嵌套类是需要实例化的</code>。</li><li>内部类不能使用外部类的属性和成员</li></ul></blockquote><h4 id="2-2、匿名内部类"><a href="#2-2、匿名内部类" class="headerlink" title="2.2、匿名内部类"></a>2.2、匿名内部类</h4><blockquote><p>作为一名<code>Android</code>开发者，对匿名内部类都不陌生，因为在开发中，匿名内部类随处可见。比如说<code>Button</code>的<code>OnClickListener</code>，<code>ListView</code>的单击、长按事件等都用到了匿名内部类。<br>一般的使用方式为定义一个接口，在接口中定义一个方法。</p></blockquote><p>例：</p><pre><code>class Other{
+
+    lateinit private var listener : OnClickListener
+
+    fun setOnClickListener(listener: OnClickListener){
+        this.listener = listener
+    }
+
+    fun testListener(){
+        listener.onItemClick(&quot;我是匿名内部类的测试方法&quot;)
+    }
+}    
+
+interface OnClickListener{
+    fun onItemClick(str : String)
+}
+
+fun main(args: Array&lt;String&gt;){
+    // 测试匿名内部类
+    val other = Other()
+    other.setOnClickListener(object : OnClickListener{
+        override fun onItemClick(str: String) {
+            // todo
+            println(str)
+        }
+    })
+    other.testListener()
+}
+</code></pre><p>输出结果为：</p><pre><code>我是匿名内部类的测试方法
+</code></pre><p><strong>遗留的问题</strong></p><blockquote><p>在上面实现的匿名内部类是很常规的用法以及写法。在我们的实际开发当中也是大家熟知的写法。但是在我们实际开发当中，会引入<code>lambda</code>语法糖，让我们的项目支持<code>lambda</code>语法，简化代码量。在这里我也是想把用<strong><code>lambda</code>语法实现匿名内部类实现的代码贴出来</strong>，但是考虑到很多朋友不知道<code>lambda</code>语法强大或者对<code>lambda</code>不了解，同时考虑到篇幅原因，故而在我的下一篇博文<a href="#">Kotlin——你该应该熟知、掌握的Lambda语法</a>去讲解。</p></blockquote><h3 id="3、局部类"><a href="#3、局部类" class="headerlink" title="3、局部类"></a>3、局部类</h3><blockquote><p>所谓局部类，这一点和<code>Java</code>是一致的。即定义在方法（函数）中的类。</p></blockquote><p>例：</p><pre><code>class Other{    // 外部类
+    val numOther = 1
+
+    fun partMethod(){
+        var name : String = &quot;partMethod&quot;
+
+        class Part{
+            var numPart : Int = 2
+
+            fun test(){
+                name = &quot;test&quot;
+                numPart = 5
+                println(&quot;我是局部类中的方法&quot;)
+            }
+        }
+
+        val part = Part()
+        println(&quot;name = $name \t numPart = &quot; + part.numPart + &quot;\t numOther = numOther&quot;)
+        part.test()
+        println(&quot;name = $name \t numPart = &quot; + part.numPart + &quot;\t numOther = numOther&quot;)
+    }
+}
+
+fun main(args: Array&lt;String&gt;) {
+    // 测试局部类
+    Other().partMethod()
+}
+</code></pre><p>输出结果为：</p><pre><code>name = partMethod      numPart = 2    numOther = 1
+我是局部类中的方法
+name = test      numPart = 5    numOther = 1
+</code></pre><p><strong>通过上面的实例：我们可以看出：</strong></p><blockquote><ul><li>局部类只能在定义该局部类的方法中使用。</li><li>定义在实例方法中的局部类可以访问外部类的所有变量和方法。但不能修改</li><li>局部类中的可以定义属性、方法。并且可以修改局部方法中的变量。</li></ul></blockquote><h3 id="4、静态类"><a href="#4、静态类" class="headerlink" title="4、静态类"></a>4、静态类</h3><blockquote><p>熟悉<code>Java</code>的朋友都知道<code>Java</code>的静态类，或者说用<code>static</code>修饰符修饰的类。但是在<code>Kotlin</code>中，是不存在<code>static</code>关键字的。那么我们怎样去实现一个静态类呢？</p></blockquote><p>关于<strong>静态类</strong>的使用，以及静态类的语法。以及<code>Koltin</code>的单例模式实现。由于篇幅原因我在这里就不展示了。有兴趣的朋友请参见<a href="https://www.jianshu.com/p/157126615f77" target="_blank" rel="noopener">kotlin中的object更像是语法糖</a>。这篇文章是别的大牛诠释静态类以及单例实现很好的文章。后面我会出一篇详细的文章为大家讲解。</p><h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>在学完本篇博文中，你应该掌握<code>抽象类</code>的作用，掌握其和<code>普通类</code>、<code>接口类</code>、<code>继承类</code>的区别所在，了解实现<code>抽象类</code>的意义，或者说在项目中为什么要用<code>抽象类</code>去编写一个<code>基类</code>等。<br>对于<code>嵌套类</code>和<code>内部类</code>而言，知道这两者的区别所在，和熟知他们在项目中用在什么地方就够了。对于<code>静态类</code>来说，常用的实现都是用其去实现一个单例模式。在<code>Koltin</code>的不像<code>Java</code>一样实现很多的工具类，因为<code>Kotlin</code>中的<strong>扩展</strong>功能很强大。可以用<strong>扩展</strong>去替换掉大部分的工具类。本篇文章主要是展示<code>object</code>的用法而已，详细的使用场景和用法会在后续的文章中为大家奉上。</p><p><a href="https://github.com/Jetictors/KotlinLeran/blob/master/src/com/kotlin/leran/cls/classDemo/AbstarctClassDemo.kt" target="_blank" rel="noopener">源代码</a></p></div><div><div id="wechat_subscriber" style="display:block;padding:10px 0;margin:20px auto;width:100%;text-align:center"><img id="wechat_subscriber_qcode" src="/uploads/qq_qcode.jpg" alt="Jetictors wechat" style="width:200px;max-width:100%"><div>欢迎加入kotlin交流群，群号 497071402</div></div></div><div><div style="padding:10px 0;margin:20px auto;width:90%;text-align:center"><div>坚持原创技术分享，您的支持将鼓励我继续创作！有钱的捧个钱场，没钱的捧个人场！谢谢大家了</div><button id="rewardButton" style="margin:12px 0 0 0" disable="enable" onclick='var e=document.getElementById("QR");"none"===e.style.display?e.style.display="block":e.style.display="none"'><span>赞赏</span></button><div id="QR" style="display:none"><div id="wechat" style="display:inline-block"><img id="wechat_qr" src="/images/wechatpay.jpg" alt="Jetictors WeChat Pay"><p>微信 Pay</p></div><div id="alipay" style="display:inline-block"><img id="alipay_qr" src="/images/alipay.jpg" alt="Jetictors Alipay"><p>支付宝</p></div></div></div></div><div><div><div style="text-align:center;color:#ccc;font-size:14px">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div></div></div><footer class="post-footer"><div class="post-tags"><a href="/tags/Kotlin/" rel="tag"><i class="fa fa-tag"></i> Kotlin</a> <a href="/tags/kotlin抽象类/" rel="tag"><i class="fa fa-tag"></i> kotlin抽象类</a> <a href="/tags/kotlin内部类/" rel="tag"><i class="fa fa-tag"></i> kotlin内部类</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/2018/01/02/kotlin/数据类与密封类/" rel="next" title="Kotlin——从无到有系列之中级篇（六）：数据类（data）、密封类详解"><i class="fa fa-chevron-left"></i> Kotlin——从无到有系列之中级篇（六）：数据类（data）、密封类详解</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"><a href="/2018/01/08/kotlin/operator_first/" rel="prev" title="Kotlin——从无到有系列之初级篇（五）：操作符重载一">Kotlin——从无到有系列之初级篇（五）：操作符重载一 <i class="fa fa-chevron-right"></i></a></div></div></footer></div></article><div class="post-spread"><div class="jiathis_style"><a class="jiathis_button_tsina"></a> <a class="jiathis_button_tqq"></a> <a class="jiathis_button_weixin"></a> <a class="jiathis_button_cqq"></a> <a class="jiathis_button_douban"></a> <a class="jiathis_button_renren"></a> <a class="jiathis_button_qzone"></a> <a class="jiathis_button_kaixin001"></a> <a class="jiathis_button_copy"></a> <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a> <a class="jiathis_counter_style"></a></div><script type="text/javascript">var jiathis_config={hideMore:!1}</script><script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script></div></div></div><div class="comments" id="comments"></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">文章目录</li><li class="sidebar-nav-overview" data-target="site-overview">站点概览</li></ul><section class="site-overview sidebar-panel"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="Jetictors"><p class="site-author-name" itemprop="name">Jetictors</p><p class="site-description motion-element" itemprop="description">凡事豫则立，不豫则废 ———— 《礼记·中庸》</p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives/"><span class="site-state-item-count">17</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/index.html"><span class="site-state-item-count">3</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/index.html"><span class="site-state-item-count">25</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/Jetictors" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i> GitHub </a></span><span class="links-of-author-item"><a href="" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i> E-Mail </a></span><span class="links-of-author-item"><a href="https://www.cnblogs.com/Jetictors/" target="_blank" title="博客园"><i class="fa fa-fw fa-bitcoin"></i> 博客园 </a></span><span class="links-of-author-item"><a href="https://juejin.im/user/5709f5798ac247004c295d95/posts" target="_blank" title="掘金"><i class="fa fa-fw fa-bitcoin"></i> 掘金</a></span></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、抽象类"><span class="nav-number">2.</span> <span class="nav-text">一、抽象类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、抽象类的定义"><span class="nav-number">2.1.</span> <span class="nav-text">1、抽象类的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、抽象类的规则"><span class="nav-number">2.2.</span> <span class="nav-text">2、抽象类的规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、抽象类的实际应用"><span class="nav-number">2.3.</span> <span class="nav-text">3、抽象类的实际应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、内部类（嵌套类）"><span class="nav-number">3.</span> <span class="nav-text">二、内部类（嵌套类）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、嵌套类"><span class="nav-number">3.1.</span> <span class="nav-text">1、嵌套类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、内部类"><span class="nav-number">3.2.</span> <span class="nav-text">2、内部类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1、关键字"><span class="nav-number">3.2.1.</span> <span class="nav-text">2.1、关键字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2、匿名内部类"><span class="nav-number">3.2.2.</span> <span class="nav-text">2.2、匿名内部类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、局部类"><span class="nav-number">3.3.</span> <span class="nav-text">3、局部类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、静态类"><span class="nav-number">3.4.</span> <span class="nav-text">4、静态类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、总结"><span class="nav-number">4.</span> <span class="nav-text">三、总结</span></a></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><div class="copyright">&copy; 2017 - <span itemprop="copyrightYear">2018</span> <span class="with-love"><i class="fa fa-heartbeat"></i> </span><span class="author" itemprop="copyrightHolder">Jetictors</span></div><div class="powered-by"><i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv"> 本站访客数:<span id="busuanzi_value_site_uv"></span></span></div><div class="theme-info"><div class="powered-by"></div><span class="post-count">博客全站共38.9k字</span></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script></body></html><script type="text/javascript" src="/js/src/love.js"></script><!-- rebuild by neat -->

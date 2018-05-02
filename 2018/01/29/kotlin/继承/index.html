@@ -1,0 +1,201 @@
+<!-- build time:Thu May 03 2018 01:40:59 GMT+0800 (中国标准时间) --><!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#222"><script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script><link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet"><style>.pace .pace-progress{background:#28004D;height:2px}.pace .pace-progress-inner{box-shadow:0 0 10px #1E92FB,0 0 5px #1E92FB}.pace .pace-activity{border-top-color:#1E92FB;border-left-color:#1E92FB}</style><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css"><meta name="keywords" content="Kotlin,kotlin继承,"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2"><meta name="description" content="在前面的章节中，详细的详解了类的使用，但是由于篇幅的限制，关于类的很多特性都没有讲解到。今天在这篇文章中，详细的讲解Kotlin中类的特性。众所周知，Kotlin是一门面向对象的开发语言。那么他也有面向对象语言的特性。而面向对象的三大特性即封装、继承、多态。这是每一门面向对象语言否具有的特性。今天这一节会着重的讲解Kotlin的继承与Java的不同处和Kotlin独有的特点。"><meta name="keywords" content="Kotlin,kotlin继承"><meta property="og:type" content="article"><meta property="og:title" content="Kotlin——从无到有系列之中级篇（四）：面向对象的特征与类（class）继承详解"><meta property="og:url" content="http://yoursite.com/2018/01/29/kotlin/继承/index.html"><meta property="og:site_name" content="Jetictors&#39;Blogs"><meta property="og:description" content="在前面的章节中，详细的详解了类的使用，但是由于篇幅的限制，关于类的很多特性都没有讲解到。今天在这篇文章中，详细的讲解Kotlin中类的特性。众所周知，Kotlin是一门面向对象的开发语言。那么他也有面向对象语言的特性。而面向对象的三大特性即封装、继承、多态。这是每一门面向对象语言否具有的特性。今天这一节会着重的讲解Kotlin的继承与Java的不同处和Kotlin独有的特点。"><meta property="og:locale" content="zh-Hans"><meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/1/29/1613da2b9d8029c8?w=1027&h=500&f=png&s=40731"><meta property="og:updated_time" content="2018-05-02T17:32:36.871Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Kotlin——从无到有系列之中级篇（四）：面向对象的特征与类（class）继承详解"><meta name="twitter:description" content="在前面的章节中，详细的详解了类的使用，但是由于篇幅的限制，关于类的很多特性都没有讲解到。今天在这篇文章中，详细的讲解Kotlin中类的特性。众所周知，Kotlin是一门面向对象的开发语言。那么他也有面向对象语言的特性。而面向对象的三大特性即封装、继承、多态。这是每一门面向对象语言否具有的特性。今天这一节会着重的讲解Kotlin的继承与Java的不同处和Kotlin独有的特点。"><meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/1/29/1613da2b9d8029c8?w=1027&h=500&f=png&s=40731"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Pisces",sidebar:{position:"left",display:"post",offset:12,offset_float:12,b2t:!1,scrollpercent:!1,onmobile:!1},fancybox:!0,tabs:!0,motion:!0,duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="http://yoursite.com/2018/01/29/kotlin/继承/"><title>Kotlin——从无到有系列之中级篇（四）：面向对象的特征与类（class）继承详解 | Jetictors'Blogs</title></head><canvas class="fireworks" style="position:fixed;left:0;top:0;z-index:1;pointer-events:none"></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script><script type="text/javascript" src="/js/src/fireworks.js"></script><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><a href="https://github.com/Jetictors"><img style="position:absolute;top:0;right:0;border:0" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">Jetictors'Blogs</span> <span class="logo-line-after"><i></i></span></a></div><p class="site-subtitle">热爱编程、技术，喜爱分享的小码农</p></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于</a></li></ul></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/29/kotlin/继承/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="Jetictors"><meta itemprop="description" content=""><meta itemprop="image" content="/uploads/avatar.jpg"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="Jetictors'Blogs"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Kotlin——从无到有系列之中级篇（四）：面向对象的特征与类（class）继承详解</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-29T00:00:00+08:00">2018-01-29 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Kotlin/" itemprop="url" rel="index"><span itemprop="name">Kotlin</span></a></span></span><div class="post-wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i> </span><span class="post-meta-item-text">字数统计</span> <span title="字数统计">2,973字 </span><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i> </span><span class="post-meta-item-text">阅读时长</span> <span title="阅读时长">11分钟</span></div></div></header><div class="post-body" itemprop="articleBody"><p>在前面的章节中，详细的详解了<code>类</code>的使用，但是由于篇幅的限制，关于类的很多特性都没有讲解到。今天在这篇文章中，详细的讲解<code>Kotlin</code>中类的特性。众所周知，<code>Kotlin</code>是一门面向对象的开发语言。那么他也有面向对象语言的特性。而面向对象的三大特性即<code>封装</code>、<code>继承</code>、<code>多态</code>。这是每一门面向对象语言否具有的特性。今天这一节会着重的讲解<code>Kotlin的继承</code>与<code>Java</code>的不同处和<code>Kotlin</code>独有的特点。</p><a id="more"></a><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p><img src="https://user-gold-cdn.xitu.io/2018/1/29/1613da2b9d8029c8?w=1027&amp;h=500&amp;f=png&amp;s=40731" alt=""></p><h2 id="一、面向对象的特征"><a href="#一、面向对象的特征" class="headerlink" title="一、面向对象的特征"></a>一、面向对象的特征</h2><blockquote><p>面向对象的三大特征：<code>封装</code>、<code>继承</code>、<code>多态</code></p></blockquote><p>由于面向对象的三大特征太过于普通，而且这并不是<code>Kotlin</code>中特有的知识。在这里就不多做描述。</p><h2 id="二、Kotlin继承类"><a href="#二、Kotlin继承类" class="headerlink" title="二、Kotlin继承类"></a>二、Kotlin继承类</h2><blockquote><p>在<code>Kotlin</code>中，继承这个特性除了定义<code>关键字</code>,以及所有的父类和<code>Java</code>语言不通之外，其他的其实无太大的差别。不过既然写到了这里，还是从始至终的写完这个特性，如果您有<code>Java</code>的基础，您可以当复习一遍。</p></blockquote><h3 id="2-1、超类-Any"><a href="#2-1、超类-Any" class="headerlink" title="2.1、超类(Any)"></a>2.1、超类(<code>Any</code>)</h3><blockquote><p>在<code>Kotlin</code>中，说有的类都是继承与<code>Any</code>类，这是这个没有父类型的类。即当我们定义各类时，它默认是继承与<code>Any</code>这个超类的</p></blockquote><p>例：</p><pre><code>class Demo    // 这里定义了一个Demo类，即这个类默认是继承与超类的。
+</code></pre><p>因为<code>Any</code>这个类只是给我们提供了<code>equals()</code>、<code>hashCode()</code>、<code>toString()</code>这三个方法。我们可以看看<code>Any</code>这个类的源码实现：</p><pre><code>package kotlin
+
+/**
+ * The root of the Kotlin class hierarchy. Every Kotlin class has [Any] as a superclass.
+ * 看这个源码注释：意思是任何一个Kotlin的类都继承与这个[Any]类
+ */
+public open class Any {
+
+    // 比较: 在平时的使用中经常用到的equals()函数的源码就在这里额
+    public open operator fun equals(other: Any?): Boolean
+
+    // hashCode()方法：其作用是返回该对象的哈希值
+    public open fun hashCode(): Int
+
+    // toString()方法
+    public open fun toString(): String
+}
+</code></pre><p>从源码可以我们看出，它直接属于<code>kotlin</code>这个包下。并且只定义了上面所示的三个方法。或许你具有<code>Java</code>的编程经验。在我们熟知的<code>Java</code>中，所有的类默认都是继承与<code>Object</code>类型的。而<code>Object</code>这个类除了比<code>Any</code>多了几个方法与属性外，没有太大的区别。不过他们并不是同一个类。这里就不多种讲解了….</p><p>从上面源码中所产生的疑惑：类与函数前面都加上了<code>open</code>这个修饰符。那么这个修饰符的作用是什么呢？<br>其实我们分析可以得出：既然<code>Any</code>类是所有类的父类，那么我们自己要定义一个继承类，跟着<code>Any</code>类的语法与结构就能定义一个继承类。故而，<code>open</code>修饰符是我们定义继承类的修饰符</p><h3 id="2-2、定义"><a href="#2-2、定义" class="headerlink" title="2.2、定义"></a>2.2、定义</h3><h4 id="2-2-1、继承类的基础使用"><a href="#2-2-1、继承类的基础使用" class="headerlink" title="2.2.1、继承类的基础使用"></a>2.2.1、继承类的基础使用</h4><blockquote><ul><li>定义继承类的关键字为：<code>open</code>。不管是类、还是成员都需要使用<code>open</code>关键字。</li><li><p>定义格式为：</p><pre><code>open class 类名{
+     ...
+     open var/val 属性名 = 属性值
+     ...
+     open fun 函数名()
+     ...
+ }
+</code></pre></li></ul></blockquote><p>例：这里定义一个继承类<code>Demo</code>，并实现两个属性与方法,并且定义一个<code>DemoTest</code>去继承自<code>Demo</code></p><pre><code>open class Demo{
+
+    open var num = 3
+
+    open fun foo() = &quot;foo&quot;
+
+    open fun bar() = &quot;bar&quot;
+
+}
+
+class DemoTest : Demo(){
+    // 这里值得注意的是：Kotlin使用继承是使用`:`符号，而Java是使用extends关键字
+}
+
+fun main(args: Array&lt;String&gt;) {
+
+    println(DemoTest().num)
+    DemoTest().foo()
+    DemoTest().bar()
+
+}
+</code></pre><p>输出结果为：</p><pre><code>3
+foo
+bar
+</code></pre><p>分析：从上面的代码可以看出，<code>DemoTest</code>类只是继承了<code>Demo</code>类，并没有实现任何的代码结构。一样可以使用<code>Demo</code>类中的属性与函数。这就是继承的好处。</p><h4 id="2-2-2、继承类的构造函数"><a href="#2-2-2、继承类的构造函数" class="headerlink" title="2.2.2、继承类的构造函数"></a>2.2.2、继承类的构造函数</h4><blockquote><p>在上一篇文章中，讲解到了<code>Kotlin</code>类，可以有一个主构造函数，或者多个辅助函数。或者没有构造函数的情况。如果您对<code>Kotlin</code>的构造函数还不了解的情况，请阅读我的上一篇文章<a href="https://juejin.im/post/5a3297de6fb9a045055e295e" target="_blank" rel="noopener">Kotlin——类详解</a>。</p></blockquote><p>这里当实现类无主构造函数，和存在主构造函数的情况。</p><ul><li><strong>无主构造函数</strong><blockquote><p>当实现类无主构造函数时，则每个辅助构造函数必须使用<code>super</code>关键字初始化基类型，或者委托给另一个构造函数。 请注意，在这种情况下，不同的辅助构造函数可以调用基类型的不同构造函数</p></blockquote></li></ul><p>例：这里举例在<code>Android</code>中常见的自定义View实现，我们熟知，当我们指定一个组件是，一般实现继承类(基类型)的三个构造函数。</p><pre><code>class MyView : View(){
+
+    constructor(context: Context) : super(context)
+
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
+
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int)
+        : super(context, attrs, defStyleAttr)
+}
+</code></pre><p>可以看出，当实现类无主构造函数时，分别使用了<code>super()</code>去实现了基类的三个构造函数。</p><ul><li><strong>存在主构造函数</strong><blockquote><p>当存在主构造函数时，主构造函数一般实现基类型中参数最多的构造函数，参数少的构造函数则用<code>this</code>关键字引用即可了。这点在<a href="https://juejin.im/post/5a3297de6fb9a045055e295e" target="_blank" rel="noopener">Kotlin——类详解</a>这篇文章是讲解到的。</p></blockquote></li></ul><p>例：同样以自定义组件为例子</p><pre><code>class MyView(context: Context?, attrs: AttributeSet?, defStyleAttr: Int)
+    : View(context, attrs, defStyleAttr) {
+
+    constructor(context: Context?) : this(context,null,0)
+
+    constructor(context: Context?,attrs: AttributeSet?) : this(context,attrs,0)
+}
+</code></pre><h3 id="2-3、函数的重载与重写"><a href="#2-3、函数的重载与重写" class="headerlink" title="2.3、函数的重载与重写"></a>2.3、函数的重载与重写</h3><blockquote><p>在<code>Kotlin</code>中关于函数的<code>重载</code>与<code>重写</code>,和<code>Java</code>中是几乎是一样的，但是这里还是举例来说明一下。</p></blockquote><p><strong>2.3.1、重写函数中的两点特殊用法</strong></p><p>不管是<code>Java</code>还是<code>Kotlin</code>，重写基类型里面的方法，则称为重写，或者是覆盖基类型方法。不过这里介绍两点<code>Kotlin</code>一点特殊的地方</p><blockquote><ol><li>当基类中的函数，没有用<code>open</code>修饰符修饰的时候，实现类中出现的函数的函数名不能与基类中没有用<code>open</code>修饰符修饰的函数的函数名相同，不管实现类中的该函数有无<code>override</code>修饰符修饰。读着有点绕，直接看例子你就明白了。</li></ol></blockquote><p>例：</p><pre><code>open class Demo{
+    fun test(){}   // 注意，这个函数没有用open修饰符修饰
+}
+
+class DemoTest : Demo(){
+
+    // 这里声明一个和基类型无open修饰符修饰的函数，且函数名一致的函数
+    // fun test(){}   编辑器直接报红，根本无法运行程序
+    // override fun test(){}   同样报红
+}
+</code></pre><blockquote><ol start="2"><li>当一个类不是用<code>open</code>修饰符修饰时，这个类默认是<code>final</code>的。即：</li></ol></blockquote><pre><code>class A{}
+
+等价于
+
+final class A{}   // 注意，则的`final`修饰符在编辑器中是灰色的，因为Kotlin中默认的类默认是final的
+</code></pre><p>那么当一个基类去继承另外一个基类时，第二个基类不想去覆盖掉第一个基类的方法时，第二个基类的该方法使用<code>final</code>修饰符修饰。</p><p>例：</p><pre><code>open class A{
+    open fun foo(){}
+}
+
+// B这个类继承类A，并且类B同样使用open修饰符修饰了的
+open class B : Demo(){
+
+    // 这里使用final修饰符修饰该方法，禁止覆盖掉类A的foo()函数
+    final override fun foo(){}
+}
+</code></pre><p><strong>2.3.2、方法重载</strong></p><blockquote><p>在文章的开头提到了<code>多态</code>这个特性，方法的重载其实主要体现在这个地方。即函数名相同，函数的参数不同的情况。这一点和<code>Java</code>是相同的</p></blockquote><p>这一点在继承类中同样有效：</p><p>例：</p><pre><code>open class Demo{
+    open fun foo() = &quot;foo&quot;
+}
+
+class DemoTest : Demo(){
+
+    fun foo(str: String) : String{
+        return str
+    }
+
+    override fun foo(): String {
+        return super.foo()
+    }
+}    
+
+fun main(args: Array&lt;String&gt;) {
+    println(DemoTest().foo())
+    DemoTest().foo(&quot;foo的重载函数&quot;)
+}
+</code></pre><p>输出结果为：</p><pre><code>foo
+foo的重载函数
+</code></pre><h3 id="2-4、重写属性"><a href="#2-4、重写属性" class="headerlink" title="2.4、重写属性"></a>2.4、重写属性</h3><blockquote><ul><li>重写属性和重写方法其实大致是相同的，但是属性不能被重载。</li><li>重写属性即指：在基类中声明的属性，然后在其基类的实现类中重写该属性，该属性必须以<code>override</code>关键字修饰，并且其属性具有和基类中属性一样的类型。且可以重写该属性的值（<code>Getter</code>）</li></ul></blockquote><p>例：</p><pre><code>open class Demo{
+    open var num = 3
+}
+
+class DemoTest : Demo(){
+    override var num: Int = 10
+}
+</code></pre><p><strong>2.4.1、重写属性中，val与var的区别</strong></p><p>这里可以看出重写了<code>num</code>这个属性，并且为这个属性重写了其值为<code>10</code><br>但是，还有一点值得我们注意：当基类中属性的变量修饰符为<code>val</code>的使用，其实现类可以用重写属性可以用<code>var</code>去修饰。反之则不能。</p><p>例：</p><pre><code>open class Demo{
+    open val valStr = &quot;我是用val修饰的属性&quot;
+}
+
+class DemoTest : Demo(){
+
+    /*
+     * 这里用val、或者var重写都是可以的。
+     * 不过当用val修饰的时候不能有setter()函数，编辑器直接会报红的
+     */
+
+    // override val valStr: String
+    //   get() = super.valStr
+
+    // override var valStr: String = &quot;&quot;
+    //   get() = super.valStr
+
+    // override val valStr: String = &quot;&quot;
+
+    override var valStr: String = &quot;abc&quot;
+        set(value){field = value}
+}
+
+fun main(arge: Array&lt;String&gt;&gt;){
+    println(DemoTest().valStr)
+
+    val demo = DemoTest()
+    demo.valStr = &quot;1212121212&quot;
+    println(demo.valStr)
+}
+</code></pre><p>输出结果为：</p><pre><code>abc
+1212121212
+</code></pre><p><strong>2.4.2、Getter()函数慎用super关键字</strong></p><p>在这里值得注意的是，在实际的项目中在重写属性的时候不用<code>get() = super.xxx</code>,因为这样的话，不管你是否重新为该属性赋了新值，还是支持<code>setter()</code>,在使用的时候都调用的是基类中的属性值。</p><p>例： 继上面中的例子</p><pre><code>class DemoTest : Demo(){
+
+    /*
+     * 这里介绍重写属性是，getter()函数中使用`super`关键字的情况
+     */
+
+    override var valStr: String = &quot;abc&quot;、
+        get() = super.valStr
+        set(value){field = value}
+}
+
+fun main(arge: Array&lt;String&gt;&gt;){
+    println(DemoTest().valStr)
+
+    val demo = DemoTest()
+    demo.valStr = &quot;1212121212&quot;
+    println(demo.valStr)
+}
+</code></pre><p>输出结果为：</p><pre><code>我是用val修饰的属性
+我是用val修饰的属性
+</code></pre><p>切记：重写属性的时候慎用<code>super</code>关键字。不然就是上面例子的效果</p><p><strong>2.4.3、在主构造函数中重写</strong></p><blockquote><p>这一点和其实在<code>接口类</code>的文章中讲解过了，不清楚的可以去参见<a href="https://juejin.im/post/5a34c551518825552b3f9c91" target="_blank" rel="noopener">Kotlin——枚举类（Enum）、接口类（Interface）详解</a>。</p></blockquote><p>例：基类还是上面的例子</p><pre><code>class DemoTest2(override var num: Int, override val valStr: String) : Demo()
+
+fun main(args: Array&lt;String&gt;){
+    val demo2 = DemoTest2(1,&quot;构造函数中重写&quot;)
+    println(&quot;num = ${demo2.num} \t valStr = ${demo2.valStr}&quot;)
+}
+</code></pre><p>输出结果为：</p><pre><code>num = 1      valStr = 构造函数中重写
+</code></pre><h3 id="2-5、覆盖规则"><a href="#2-5、覆盖规则" class="headerlink" title="2.5、覆盖规则"></a>2.5、覆盖规则</h3><blockquote><p>这里的覆盖规则，是指实现类继承了一个基类，并且实现了一个接口类，当我的基类中的方法、属性和接口类中的函数重名的情况下，怎样去区分实现类到底实现哪一个中的属性或属性。<br>这一点和一个类同时实现两个接口类，而两个接口都用同样的属性或者函数的时候是一样的。在<code>接口类</code>这篇文章中已经讲解过，您可以参见<a href="https://juejin.im/post/5a34c551518825552b3f9c91" target="_blank" rel="noopener">Kotlin——枚举类（Enum）、接口类（Interface）详解</a>。</p></blockquote><p>例：</p><pre><code>open class A{
+    open fun test1(){ println(&quot;基类A中的函数test1()&quot;) }
+
+    open fun test2(){println(&quot;基类A中的函数test2()&quot;)}
+}
+
+interface B{
+    fun test1(){ println(&quot;接口类B中的函数test1()&quot;) }
+
+    fun test2(){println(&quot;接口类B中的函数test2()&quot;)}
+}
+
+class C : A(),B{
+    override fun test1() {
+        super&lt;A&gt;.test1()
+        super&lt;B&gt;.test1()
+    }
+
+    override fun test2() {
+        super&lt;A&gt;.test2()
+        super&lt;B&gt;.test2()
+    }
+}
+</code></pre><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>对于<code>Kotlin</code>中<strong>继承类</strong>这一个知识点，在项目中用到的地方是很常见的。当你认真的学习完上面的内容，我相信你可以能很轻易的用于项目中，不过对一个类来说，继承的代价较高，当实现一个功能不必用到太多的集成属性的时候，可以用<code>对象表达式</code>这一个高级功能去替代掉继承。<br>如果你有过其他面向对象语言的编程经验的话，你只要掌握其<code>关键字、属性/函数重写、以及覆盖规则</code>这三三个知识点就可以了。</p><p><a href="https://github.com/Jetictors/KotlinLearn/blob/master/src/com/kotlin/leran/cls/classDemo/InheritCls.kt" target="_blank" rel="noopener">源代码</a></p></div><div><div id="wechat_subscriber" style="display:block;padding:10px 0;margin:20px auto;width:100%;text-align:center"><img id="wechat_subscriber_qcode" src="/uploads/qq_qcode.jpg" alt="Jetictors wechat" style="width:200px;max-width:100%"><div>欢迎加入kotlin交流群，群号 497071402</div></div></div><div><div style="padding:10px 0;margin:20px auto;width:90%;text-align:center"><div>坚持原创技术分享，您的支持将鼓励我继续创作！有钱的捧个钱场，没钱的捧个人场！谢谢大家了</div><button id="rewardButton" style="margin:12px 0 0 0" disable="enable" onclick='var e=document.getElementById("QR");"none"===e.style.display?e.style.display="block":e.style.display="none"'><span>赞赏</span></button><div id="QR" style="display:none"><div id="wechat" style="display:inline-block"><img id="wechat_qr" src="/images/wechatpay.jpg" alt="Jetictors WeChat Pay"><p>微信 Pay</p></div><div id="alipay" style="display:inline-block"><img id="alipay_qr" src="/images/alipay.jpg" alt="Jetictors Alipay"><p>支付宝</p></div></div></div></div><div><div><div style="text-align:center;color:#ccc;font-size:14px">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div></div></div><footer class="post-footer"><div class="post-tags"><a href="/tags/Kotlin/" rel="tag"><i class="fa fa-tag"></i> Kotlin</a> <a href="/tags/kotlin继承/" rel="tag"><i class="fa fa-tag"></i> kotlin继承</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/2018/01/22/kotlin/basis_fun/" rel="next" title="Kotlin——从无到有系列之初级篇（七）：基本的函数/方法使用"><i class="fa fa-chevron-left"></i> Kotlin——从无到有系列之初级篇（七）：基本的函数/方法使用</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"><a href="/2018/03/04/markdown/start/" rel="prev" title="Markdown语法你都会了吗?">Markdown语法你都会了吗? <i class="fa fa-chevron-right"></i></a></div></div></footer></div></article><div class="post-spread"><div class="jiathis_style"><a class="jiathis_button_tsina"></a> <a class="jiathis_button_tqq"></a> <a class="jiathis_button_weixin"></a> <a class="jiathis_button_cqq"></a> <a class="jiathis_button_douban"></a> <a class="jiathis_button_renren"></a> <a class="jiathis_button_qzone"></a> <a class="jiathis_button_kaixin001"></a> <a class="jiathis_button_copy"></a> <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a> <a class="jiathis_counter_style"></a></div><script type="text/javascript">var jiathis_config={hideMore:!1}</script><script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script></div></div></div><div class="comments" id="comments"></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">文章目录</li><li class="sidebar-nav-overview" data-target="site-overview">站点概览</li></ul><section class="site-overview sidebar-panel"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="Jetictors"><p class="site-author-name" itemprop="name">Jetictors</p><p class="site-description motion-element" itemprop="description">凡事豫则立，不豫则废 ———— 《礼记·中庸》</p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives/"><span class="site-state-item-count">17</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/index.html"><span class="site-state-item-count">3</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/index.html"><span class="site-state-item-count">25</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/Jetictors" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i> GitHub </a></span><span class="links-of-author-item"><a href="" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i> E-Mail </a></span><span class="links-of-author-item"><a href="https://www.cnblogs.com/Jetictors/" target="_blank" title="博客园"><i class="fa fa-fw fa-bitcoin"></i> 博客园 </a></span><span class="links-of-author-item"><a href="https://juejin.im/user/5709f5798ac247004c295d95/posts" target="_blank" title="掘金"><i class="fa fa-fw fa-bitcoin"></i> 掘金</a></span></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、面向对象的特征"><span class="nav-number">2.</span> <span class="nav-text">一、面向对象的特征</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、Kotlin继承类"><span class="nav-number">3.</span> <span class="nav-text">二、Kotlin继承类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1、超类-Any"><span class="nav-number">3.1.</span> <span class="nav-text">2.1、超类(Any)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2、定义"><span class="nav-number">3.2.</span> <span class="nav-text">2.2、定义</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1、继承类的基础使用"><span class="nav-number">3.2.1.</span> <span class="nav-text">2.2.1、继承类的基础使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2、继承类的构造函数"><span class="nav-number">3.2.2.</span> <span class="nav-text">2.2.2、继承类的构造函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3、函数的重载与重写"><span class="nav-number">3.3.</span> <span class="nav-text">2.3、函数的重载与重写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4、重写属性"><span class="nav-number">3.4.</span> <span class="nav-text">2.4、重写属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5、覆盖规则"><span class="nav-number">3.5.</span> <span class="nav-text">2.5、覆盖规则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><div class="copyright">&copy; 2017 - <span itemprop="copyrightYear">2018</span> <span class="with-love"><i class="fa fa-heartbeat"></i> </span><span class="author" itemprop="copyrightHolder">Jetictors</span></div><div class="powered-by"><i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv"> 本站访客数:<span id="busuanzi_value_site_uv"></span></span></div><div class="theme-info"><div class="powered-by"></div><span class="post-count">博客全站共38.9k字</span></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script></body></html><script type="text/javascript" src="/js/src/love.js"></script><!-- rebuild by neat -->

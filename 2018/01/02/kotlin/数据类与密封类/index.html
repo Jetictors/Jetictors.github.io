@@ -1,0 +1,169 @@
+<!-- build time:Thu May 03 2018 01:40:59 GMT+0800 (中国标准时间) --><!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#222"><script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script><link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet"><style>.pace .pace-progress{background:#28004D;height:2px}.pace .pace-progress-inner{box-shadow:0 0 10px #1E92FB,0 0 5px #1E92FB}.pace .pace-activity{border-top-color:#1E92FB;border-left-color:#1E92FB}</style><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css"><meta name="keywords" content="Kotlin,kotlin数据类,kotlin密封类,"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2"><meta name="description" content="在前面几个章节章节中，详细的讲解了Koltin中的接口类（Interface）、枚举类（Enmu）,还不甚了解的可以查看我的上一篇文章Kotlin——接口类、枚举类详解。当然，在Koltin中，除了接口类、枚举类之外，还有抽象类、内部类、数据类以及密封类。在今天的章节中，为大家详细讲解数据类和密封类。在下一章节中，再为大家奉上Kotlin中的抽象类以及内部类的知识。如果还对Kotlin中类的分类还"><meta name="keywords" content="Kotlin,kotlin数据类,kotlin密封类"><meta property="og:type" content="article"><meta property="og:title" content="Kotlin——从无到有系列之中级篇（六）：数据类（data）、密封类详解"><meta property="og:url" content="http://yoursite.com/2018/01/02/kotlin/数据类与密封类/index.html"><meta property="og:site_name" content="Jetictors&#39;Blogs"><meta property="og:description" content="在前面几个章节章节中，详细的讲解了Koltin中的接口类（Interface）、枚举类（Enmu）,还不甚了解的可以查看我的上一篇文章Kotlin——接口类、枚举类详解。当然，在Koltin中，除了接口类、枚举类之外，还有抽象类、内部类、数据类以及密封类。在今天的章节中，为大家详细讲解数据类和密封类。在下一章节中，再为大家奉上Kotlin中的抽象类以及内部类的知识。如果还对Kotlin中类的分类还"><meta property="og:locale" content="zh-Hans"><meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/31/160a8d4298bb3705?w=1118&h=612&f=png&s=58399"><meta property="og:updated_time" content="2018-04-29T16:38:08.067Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Kotlin——从无到有系列之中级篇（六）：数据类（data）、密封类详解"><meta name="twitter:description" content="在前面几个章节章节中，详细的讲解了Koltin中的接口类（Interface）、枚举类（Enmu）,还不甚了解的可以查看我的上一篇文章Kotlin——接口类、枚举类详解。当然，在Koltin中，除了接口类、枚举类之外，还有抽象类、内部类、数据类以及密封类。在今天的章节中，为大家详细讲解数据类和密封类。在下一章节中，再为大家奉上Kotlin中的抽象类以及内部类的知识。如果还对Kotlin中类的分类还"><meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2017/12/31/160a8d4298bb3705?w=1118&h=612&f=png&s=58399"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Pisces",sidebar:{position:"left",display:"post",offset:12,offset_float:12,b2t:!1,scrollpercent:!1,onmobile:!1},fancybox:!0,tabs:!0,motion:!0,duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="http://yoursite.com/2018/01/02/kotlin/数据类与密封类/"><title>Kotlin——从无到有系列之中级篇（六）：数据类（data）、密封类详解 | Jetictors'Blogs</title></head><canvas class="fireworks" style="position:fixed;left:0;top:0;z-index:1;pointer-events:none"></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script><script type="text/javascript" src="/js/src/fireworks.js"></script><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><a href="https://github.com/Jetictors"><img style="position:absolute;top:0;right:0;border:0" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">Jetictors'Blogs</span> <span class="logo-line-after"><i></i></span></a></div><p class="site-subtitle">热爱编程、技术，喜爱分享的小码农</p></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于</a></li></ul></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/02/kotlin/数据类与密封类/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="Jetictors"><meta itemprop="description" content=""><meta itemprop="image" content="/uploads/avatar.jpg"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="Jetictors'Blogs"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Kotlin——从无到有系列之中级篇（六）：数据类（data）、密封类详解</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-02T00:00:00+08:00">2018-01-02 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Kotlin/" itemprop="url" rel="index"><span itemprop="name">Kotlin</span></a></span></span><div class="post-wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i> </span><span class="post-meta-item-text">字数统计</span> <span title="字数统计">3,087字 </span><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i> </span><span class="post-meta-item-text">阅读时长</span> <span title="阅读时长">12分钟</span></div></div></header><div class="post-body" itemprop="articleBody"><p>在前面几个章节章节中，详细的讲解了<code>Koltin</code>中的<code>接口类（Interface）</code>、<code>枚举类（Enmu）</code>,还不甚了解的可以查看我的上一篇文章<a href="https://juejin.im/post/5a34c551518825552b3f9c91" target="_blank" rel="noopener">Kotlin——接口类、枚举类详解</a>。当然，在<code>Koltin</code>中，除了<code>接口类、枚举类</code>之外，还有<code>抽象类、内部类、数据类</code>以及<code>密封类</code>。在今天的章节中，为大家详细讲解<code>数据类</code>和<code>密封类</code>。在下一章节中，再为大家奉上<code>Kotlin</code>中的<code>抽象类</code>以及<code>内部类</code>的知识。如果还对<code>Kotlin</code>中<code>类</code>的分类还不清楚的可以查看我的另一篇博文<a href="https://juejin.im/post/5a3297de6fb9a045055e295e" target="_blank" rel="noopener">Koltin——类（class）详解</a>。</p><a id="more"></a><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p><img src="https://user-gold-cdn.xitu.io/2017/12/31/160a8d4298bb3705?w=1118&amp;h=612&amp;f=png&amp;s=58399" alt=""></p><h2 id="一、数据类"><a href="#一、数据类" class="headerlink" title="一、数据类"></a>一、数据类</h2><blockquote><ul><li><strong>在<code>Java</code>中，或者在我们平时的<code>Android</code>开发中，为了解析后台人员给我们提供的接口返回的<code>Json</code>字符串，我们会根据这个字符串去创建一个<code>类</code>或者<code>实例对象</code>，在这个类中，只包含了一些我们需要的数据，以及为了处理这些数据而所编写的方法。这样的类，在<code>Kotlin</code>中就被称为<code>数据类</code></strong>。</li></ul></blockquote><h3 id="1、关键字"><a href="#1、关键字" class="headerlink" title="1、关键字"></a>1、关键字</h3><blockquote><p>声明数据类的关键字为：<code>data</code></p></blockquote><p><strong>1.1、声明格式</strong></p><pre><code>data class 类名(var param1 ：数据类型,...){}
+</code></pre><p>或者</p><pre><code>data class 类名 可见性修饰符 constructor(var param1 : 数据类型 = 默认值,...)
+</code></pre><p>说明：</p><blockquote><ul><li><code>data</code>为声明<code>数据类</code>的关键字，必须书写在<code>class</code>关键字之前。</li><li>在没有结构体的时候，大括号<code>{}</code>可省略。</li><li>构造函数中必须存在至少一个参数，并且必须使用<code>val</code>或<code>var</code>修饰。这一点在下面<code>数据类特性中</code>会详细讲解。</li><li>参数的默认值可有可无。（若要实例一个无参数的数据类，则就要用到默认值）</li></ul></blockquote><p>例：</p><pre><code>// 定义一个名为Person的数据类
+data class Preson(var name : String,val sex : Int, var age : Int)
+</code></pre><p><strong>1.2、约定俗成的规定</strong></p><blockquote><ul><li>数据类也有其约定俗成的一些规定，这只是为增加代码的阅读性。</li></ul></blockquote><p>即，当构造函数中的参过多时，为了代码的阅读性，一个参数的定义占据一行。</p><p>例：</p><pre><code>data class Person(var param1: String = &quot;param1&quot;,
+              var param2: String = &quot;param2&quot;, 
+              var param3 : String,
+              var param4 : Long,
+              var param5 : Int = 2,
+              var param6 : String,
+              var param7 : Float = 3.14f,
+              var param8 : Int,
+              var param9 : String){
+    // exp
+    .
+    .
+    .
+}
+</code></pre><p><strong>1.3、编辑器为我们做的事情</strong></p><p>当我们声明一个<code>数据类</code>时，编辑器自动为这个类做了一些事情，不然它怎么又比<code>Java</code>简洁呢。它会根据主构造函数中所定义的所有属性自动生成下列方法：</p><blockquote><ul><li>生成<code>equals()</code>函数与<code>hasCode()</code>函数</li><li>生成<code>toString()</code>函数，由<code>类名（参数1 = 值1，参数2 = 值2，....）</code>构成</li><li>由所定义的属性自动生成<code>component1()、component2()、...、componentN()</code>函数，其对应于属性的声明顺序。</li><li>copy()函数。在下面会实例讲解它的作用。</li></ul></blockquote><p>其中，<strong>当这些函数中的任何一个在类体中显式定义或继承自其基类型，则不会生成该函数</strong></p><h3 id="2、数据类的特性"><a href="#2、数据类的特性" class="headerlink" title="2、数据类的特性"></a>2、数据类的特性</h3><p><code>数据类</code>有着和<code>Kotlin</code>其他类不一样的特性。除了含有其他类的一些特性外，还有着其独特的特点。并且也是<code>数据类</code>必须满足的条件：</p><blockquote><ul><li>主构造函数需要至少有一个参数</li><li>主构造函数的所有参数需要标记为 val 或 var；</li><li>数据类不能是抽象、开放、密封或者内部的；</li><li>数据类是可以实现接口的，如(序列化接口)，同时也是可以继承其他类的，如继承自一个密封类。</li></ul></blockquote><h3 id="3、用实例说明其比Java的简洁性"><a href="#3、用实例说明其比Java的简洁性" class="headerlink" title="3、用实例说明其比Java的简洁性"></a>3、用实例说明其比<code>Java</code>的简洁性</h3><p><strong>3.1、数据类的对比</strong></p><p><strong>Kotlin版：</strong></p><pre><code>data class User(val name : String, val pwd : String)
+</code></pre><p><strong>Java版：</strong></p><pre><code>public class User {
+    private String name;
+    private String pwd;
+
+    public User(){}
+
+    public User(String name, String pwd) {
+        this.name = name;
+        this.pwd = pwd;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPwd() {
+        return pwd;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
+
+    @Override
+    public String toString() {
+        return &quot;User{&quot; +
+                &quot;name=&apos;&quot; + name + &apos;\&apos;&apos; +
+                &quot;, pwd=&apos;&quot; + pwd + &apos;\&apos;&apos; +
+                &apos;}&apos;;
+    }
+}
+</code></pre><p>分析：实现同一个功能，从代码量来说，<code>Koltin</code>比<code>Java</code>少了很多行代码，比起更简洁。</p><p><strong>3.2、修改数据类属性</strong></p><p>例：修改<code>User</code>类的<code>name</code>属性</p><p><strong>Kotlin版：</strong></p><blockquote><ul><li><code>Koltin</code>要修改数据类的属性，则使用其独有的<code>copy()</code>函数。其作用就是：修改部分属性，但是保持其他不变</li></ul></blockquote><pre><code>val mUser = User(&quot;kotlin&quot;,&quot;123456&quot;)
+println(mUser)
+val mNewUser = mUser.copy(name = &quot;new Kotlin&quot;)
+println(mNewUser)
+</code></pre><p>输出结果为：</p><pre><code>User(name=kotlin, pwd=123456)
+User(name=new Kotlin, pwd=123456)
+</code></pre><p><strong>Java版：</strong></p><pre><code>User mUser = new User(&quot;Java&quot;,&quot;123456&quot;);
+System.out.println(mUser);
+mUser.setName(&quot;new Java&quot;);
+System.out.println(mUser);    
+</code></pre><p>输出结果为：</p><pre><code>User{name=&apos;Java&apos;, pwd=&apos;123456&apos;}
+User{name=&apos;new Java&apos;, pwd=&apos;123456&apos;}
+</code></pre><p>分析：从上面对两种方式的实现中可以看出，<code>Kotlin</code>是使用其独有的<code>copy()</code>函数去修改属性值，而<code>Java</code>是使用<code>setXXX()</code>去修改</p><h3 id="4、解构声明"><a href="#4、解构声明" class="headerlink" title="4、解构声明"></a>4、解构声明</h3><blockquote><ul><li>在前面讲到，<code>Kotlin</code>中定义一个数据类，则系统会默认自动根据参数的个数生成<code>component1() ... componentN()</code>函数。其<code>...,componentN()</code>函数就是用于解构声明的</li></ul></blockquote><pre><code>val mUser = User(&quot;kotlin&quot;,&quot;123456&quot;)
+val (name,pwd) = mUser
+println(&quot;name = $name\tpwd = $pwd&quot;)
+</code></pre><p>输出结果为：</p><pre><code>name = kotlin    pwd = 123456
+</code></pre><h3 id="5、系统标准库中的标准数据类"><a href="#5、系统标准库中的标准数据类" class="headerlink" title="5、系统标准库中的标准数据类"></a>5、系统标准库中的标准数据类</h3><blockquote><ul><li>标准库提供了 Pair 和 Triple。尽管在很多情况下命名数据类是更好的设计选择， 因为它们通过为属性提供有意义的名称使代码更具可读性。</li><li>其实这两个类的源码部分不多，故而贴出这个类的源代码来分析分析</li></ul></blockquote><p><strong>5.1、源码分析</strong></p><pre><code>@file:kotlin.jvm.JvmName(&quot;TuplesKt&quot;)
+package kotlin
+
+// 这里去掉了源码中的注释
+public data class Pair&lt;out A, out B&gt;(
+        public val first: A,
+        public val second: B) : Serializable {
+
+    // toString()方法
+    public override fun toString(): String = &quot;($first, $second)&quot;
+}
+
+// 转换
+public infix fun &lt;A, B&gt; A.to(that: B): Pair&lt;A, B&gt; = Pair(this, that)
+
+// 转换成List集合
+public fun &lt;T&gt; Pair&lt;T, T&gt;.toList(): List&lt;T&gt; = listOf(first, second)
+
+// 这里去掉了源码中的注释
+public data class Triple&lt;out A, out B, out C&gt;(
+        public val first: A,
+        public val second: B,
+        public val third: C ) : Serializable {
+
+    // toString()方法
+    public override fun toString(): String = &quot;($first, $second, $third)&quot;
+}
+
+// 转换成List集合
+public fun &lt;T&gt; Triple&lt;T, T, T&gt;.toList(): List&lt;T&gt; = listOf(first, second, third)
+</code></pre><p>分析：从上面的源码可以看出，标准库中提供了两个标准的数据类，<code>Pair类</code>以及<code>Triple类</code>.其中：</p><blockquote><ul><li>两个类中都实现了<code>toList()</code>方法以及<code>toString()</code>方法。</li><li><code>to()</code>方法乃<code>Pair类</code>特有，起作用是参数转换</li><li><code>Pair类</code>需要传递两个参数，<code>Triple类</code>需要传递三个参数。</li></ul></blockquote><p><strong>5.2、用法</strong></p><pre><code>val pair = Pair(1,2)        // 实例
+val triple = Triple(1,2,3)  // 实例
+println(&quot;$pair \t $triple&quot;) // 打印：即调用了各自的toString()方法
+println(pair.toList())      // 转换成List集合
+println(triple.toList())    // 转换成List集合
+println(pair.to(3))         // Pair类特有: 其作用是把参数Pair类中的第二个参数替换
+</code></pre><p>输出结果为：</p><pre><code>(1, 2)      (1, 2, 3)
+[1, 2]
+[1, 2, 3]
+((1, 2), 3)
+</code></pre><h2 id="二、密封类"><a href="#二、密封类" class="headerlink" title="二、密封类"></a>二、密封类</h2><blockquote><p>密封类是用来表示受限的<code>类继承结构</code>。若还不甚清楚<code>Kotlin</code>的类继承，请参见我的上一篇文章<a href="#">Kotlin——类的继承详解</a>。</p></blockquote><h3 id="1、什么是受限的类继承结构"><a href="#1、什么是受限的类继承结构" class="headerlink" title="1、什么是受限的类继承结构"></a>1、什么是受限的类继承结构</h3><blockquote><ul><li>所谓受限的类继承结构，即当类中的一个值只能是有限的几种类型，而不能是其他的任何类型。</li><li>这种受限的类继承结构从某种意义上讲，它相当于是枚举类的扩展。但是，我们知道<code>Kotlin</code>的枚举类中的枚举常量是受限的，因为每一个枚举常量只能存在一个实例。若对<code>Kotlin</code>中的枚举类不甚了解的，请参见我的另一篇文章<a href="https://juejin.im/post/5a34c551518825552b3f9c91" target="_blank" rel="noopener">Kotlin——枚举类（Enum）、接口类（Interface）详解</a>。</li><li>但是其和枚举类不同的地方在于，密封类的一个子类可以有可包含状态的多个实例。</li><li>也可以说成，密封类是包含了一组受限的类集合，因为里面的类都是继承自这个密封类的。但是其和其他继承类（<code>open</code>）的区别在，密封类可以不被此文件外被继承，有效保护代码。但是，其密封类的子类的扩展是是可以在程序中任何位置的，即可以不再统一文件下。</li></ul></blockquote><p>上面的几点内容是密封类的特点，请详细的看下去，小生会对这几点内容进行详细的分析。</p><h3 id="2、关键字"><a href="#2、关键字" class="headerlink" title="2、关键字"></a>2、关键字</h3><blockquote><p>定义密封类的关键字：<code>sealed</code></p></blockquote><p><strong>2.1、声明格式</strong></p><pre><code>sealed class SealedExpr()
+</code></pre><blockquote><p>注意：<strong>密封类是不能被实例化的</strong></p></blockquote><p>即</p><pre><code>val mSealedExpr = SealedExpr()  // 这段代码是错误的，编译器直接会报错不能编译通过。
+</code></pre><p>既然<code>密封类</code>是不能实例化，那么我们要怎么使用，或者说它的作用是什么呢？请继续往下看</p><h3 id="3、密封类的作用及其详细用法。"><a href="#3、密封类的作用及其详细用法。" class="headerlink" title="3、密封类的作用及其详细用法。"></a>3、密封类的作用及其详细用法。</h3><p><strong>3.1、作用</strong></p><blockquote><p>用来表示受限的类继承结构。</p></blockquote><p>例：</p><pre><code>sealed class SealedExpr{
+data class Person(val num1 : Int, val num2 : Int) : SealedExpr()
+
+object Add : SealedExpr()   // 单例模式
+object Minus : SealedExpr() // 单例模式
+}
+
+// 其子类可以定在密封类外部，但是必须在同一文件中 v1.1之前只能定义在密封类内部
+object NotANumber : SealedExpr() 
+</code></pre><p>分析：即所定义的子类都必须继承于密封类，表示一组受限的类</p><p><strong>3.2、和普通继承类的区别</strong></p><blockquote><ul><li>我们知道普通的继承类使用<code>open</code>关键字定义，在项目中的类都可集成至该类。如果你对<code>Koltin</code>的继承类还不甚了解。请参见我的另一篇文章<a href="#">Kotlin——继承类详解</a>。</li><li>而密封类的子类必须是在密封类的内部或必须存在于密封类的同一文件。这一点就是上面提到的有效的代码保护。</li></ul></blockquote><p><strong>3.3、和枚举类的区别</strong></p><blockquote><ul><li>枚举类的中的每一个枚举常量都只能存在一个实例。而密封类的子类可以存在多个实例。</li></ul></blockquote><p>例：</p><pre><code>val mPerson1 = SealedExpr.Person(&quot;name1&quot;,22)
+println(mPerson1)
+
+val mPerson2 = SealedExpr.Person(&quot;name2&quot;,23)
+println(mPerson2)
+
+println(mPerson1.hashCode())
+println(mPerson2.hashCode())
+</code></pre><p>输出结果为：</p><pre><code>Person(name=name1, age=22)
+Person(name=name2, age=23)
+-1052833328
+-1052833296
+</code></pre><p><strong>3.4、其子类的类扩展实例</strong></p><blockquote><ul><li>在<code>Kotlin</code>支持扩展功能，其和<code>C#</code>、<code>Go</code>语言类似。这一点是<code>Java</code>没有的。如果你还对<code>Koltin</code>中的扩展功能还不甚清楚的。请参见我的另一篇博文<a href="#">Kotlin——扩展功能详解</a></li></ul></blockquote><p>为了演示密封类的子类的扩展是可以在项目中的任何位置这个功能，大家可以下载源码。源码链接在文章末尾会为大家奉上。<br>例：</p><pre><code>// 其存在于SealedClassDemo.kt文件中
+
+sealed class SealedExpr{
+    data class Person(val name : String, val age : Int) : SealedExpr()
+    object Add : SealedExpr()
+    companion object Minus : SealedExpr()
+}
+
+object NotANumber : SealedExpr()
+
+其存在TestSealedDemo.kt文件中
+
+fun  &lt;T&gt;SealedExpr.Add.add(num1 : T, num2 : T) : Int{
+    return 100
+}
+
+fun main(args: Array&lt;String&gt;) {
+    println(SealedExpr.Add.add(1,2))
+}
+</code></pre><p>输出结果为：</p><pre><code>100
+</code></pre><blockquote><p>说明：上面的扩展功能没有任何的意义，只是为了给大家展示密封类子类的扩展不局限与密封类同文件这一个功能而已。如果你还对<code>Koltin</code>中的扩展功能还不甚清楚的。请参见我的另一篇博文<a href="#">Kotlin——扩展功能详解</a></p></blockquote><p><strong>3.5、使用密封类的好处</strong></p><blockquote><ul><li>有效的保护代码（上面已说明原因）</li><li>在使用<code>when</code>表达式 的时候，如果能够验证语句覆盖了所有情况，就不需要为该语句再添加一个<code>else</code>子句了。</li></ul></blockquote><p>例：</p><pre><code>sealed class SealedExpr{
+    data class Person(val name : String, val age : Int) : SealedExpr()
+    object Add : SealedExpr()
+    companion object Minus : SealedExpr()
+}
+
+object NotANumber : SealedExpr()
+
+fun eval(expr: SealedExpr) = when(expr){
+    is SealedExpr.Add -&gt; println(&quot;is Add&quot;)
+    is SealedExpr.Minus -&gt; println(&quot;is Minus&quot;)
+    is SealedExpr.Person -&gt; println(SealedExpr.Person(&quot;Koltin&quot;,22))
+    NotANumber -&gt; Double.NaN
+}
+</code></pre><p>输出结果为：</p><pre><code>is Minus
+</code></pre><h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>在实际的项目开发当中，数据类(<code>data</code>)类的用处是很多的，因为在开发<code>APP</code>时，往往会根据后台开发者所提供的接口返回的<code>json</code>而生成一个实体类，现在我们学习了数据类后，就不用再像<code>Java</code>一样写那么多代码了，即使是用编辑器提供的方法去自动生成。但是代码量上就能节省我们很多时间，并且也更加简洁。何乐而不为呢!密封类的情况在实际开发中不是很常见的。只有当时特殊的需求会用到的时候，才会使用密封类。当然我们还是要学习的。</p><p><a href="https://github.com/Jetictors/KotlinLeran/blob/master/src/com/kotlin/leran/cls/classDemo/SealedClassDemo.kt" target="_blank" rel="noopener">源代码</a></p></div><div><div id="wechat_subscriber" style="display:block;padding:10px 0;margin:20px auto;width:100%;text-align:center"><img id="wechat_subscriber_qcode" src="/uploads/qq_qcode.jpg" alt="Jetictors wechat" style="width:200px;max-width:100%"><div>欢迎加入kotlin交流群，群号 497071402</div></div></div><div><div style="padding:10px 0;margin:20px auto;width:90%;text-align:center"><div>坚持原创技术分享，您的支持将鼓励我继续创作！有钱的捧个钱场，没钱的捧个人场！谢谢大家了</div><button id="rewardButton" style="margin:12px 0 0 0" disable="enable" onclick='var e=document.getElementById("QR");"none"===e.style.display?e.style.display="block":e.style.display="none"'><span>赞赏</span></button><div id="QR" style="display:none"><div id="wechat" style="display:inline-block"><img id="wechat_qr" src="/images/wechatpay.jpg" alt="Jetictors WeChat Pay"><p>微信 Pay</p></div><div id="alipay" style="display:inline-block"><img id="alipay_qr" src="/images/alipay.jpg" alt="Jetictors Alipay"><p>支付宝</p></div></div></div></div><div><div><div style="text-align:center;color:#ccc;font-size:14px">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div></div></div><footer class="post-footer"><div class="post-tags"><a href="/tags/Kotlin/" rel="tag"><i class="fa fa-tag"></i> Kotlin</a> <a href="/tags/kotlin数据类/" rel="tag"><i class="fa fa-tag"></i> kotlin数据类</a> <a href="/tags/kotlin密封类/" rel="tag"><i class="fa fa-tag"></i> kotlin密封类</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/2017/12/18/kotlin/接口与枚举类/" rel="next" title="Kotlin——从无到有系列之中级篇（五）：枚举类（Enum）、接口类（Interface）详解"><i class="fa fa-chevron-left"></i> Kotlin——从无到有系列之中级篇（五）：枚举类（Enum）、接口类（Interface）详解</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"><a href="/2018/01/03/kotlin/abstract/" rel="prev" title="Kotlin——从无到有系列之中级篇（七）：抽象类（abstract）、内部类（嵌套类）详解">Kotlin——从无到有系列之中级篇（七）：抽象类（abstract）、内部类（嵌套类）详解 <i class="fa fa-chevron-right"></i></a></div></div></footer></div></article><div class="post-spread"><div class="jiathis_style"><a class="jiathis_button_tsina"></a> <a class="jiathis_button_tqq"></a> <a class="jiathis_button_weixin"></a> <a class="jiathis_button_cqq"></a> <a class="jiathis_button_douban"></a> <a class="jiathis_button_renren"></a> <a class="jiathis_button_qzone"></a> <a class="jiathis_button_kaixin001"></a> <a class="jiathis_button_copy"></a> <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a> <a class="jiathis_counter_style"></a></div><script type="text/javascript">var jiathis_config={hideMore:!1}</script><script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script></div></div></div><div class="comments" id="comments"></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">文章目录</li><li class="sidebar-nav-overview" data-target="site-overview">站点概览</li></ul><section class="site-overview sidebar-panel"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="Jetictors"><p class="site-author-name" itemprop="name">Jetictors</p><p class="site-description motion-element" itemprop="description">凡事豫则立，不豫则废 ———— 《礼记·中庸》</p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives/"><span class="site-state-item-count">17</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/index.html"><span class="site-state-item-count">3</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/index.html"><span class="site-state-item-count">25</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/Jetictors" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i> GitHub </a></span><span class="links-of-author-item"><a href="" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i> E-Mail </a></span><span class="links-of-author-item"><a href="https://www.cnblogs.com/Jetictors/" target="_blank" title="博客园"><i class="fa fa-fw fa-bitcoin"></i> 博客园 </a></span><span class="links-of-author-item"><a href="https://juejin.im/user/5709f5798ac247004c295d95/posts" target="_blank" title="掘金"><i class="fa fa-fw fa-bitcoin"></i> 掘金</a></span></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、数据类"><span class="nav-number">2.</span> <span class="nav-text">一、数据类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、关键字"><span class="nav-number">2.1.</span> <span class="nav-text">1、关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、数据类的特性"><span class="nav-number">2.2.</span> <span class="nav-text">2、数据类的特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、用实例说明其比Java的简洁性"><span class="nav-number">2.3.</span> <span class="nav-text">3、用实例说明其比Java的简洁性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、解构声明"><span class="nav-number">2.4.</span> <span class="nav-text">4、解构声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、系统标准库中的标准数据类"><span class="nav-number">2.5.</span> <span class="nav-text">5、系统标准库中的标准数据类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、密封类"><span class="nav-number">3.</span> <span class="nav-text">二、密封类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、什么是受限的类继承结构"><span class="nav-number">3.1.</span> <span class="nav-text">1、什么是受限的类继承结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、关键字"><span class="nav-number">3.2.</span> <span class="nav-text">2、关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、密封类的作用及其详细用法。"><span class="nav-number">3.3.</span> <span class="nav-text">3、密封类的作用及其详细用法。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、总结"><span class="nav-number">4.</span> <span class="nav-text">三、总结</span></a></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><div class="copyright">&copy; 2017 - <span itemprop="copyrightYear">2018</span> <span class="with-love"><i class="fa fa-heartbeat"></i> </span><span class="author" itemprop="copyrightHolder">Jetictors</span></div><div class="powered-by"><i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv"> 本站访客数:<span id="busuanzi_value_site_uv"></span></span></div><div class="theme-info"><div class="powered-by"></div><span class="post-count">博客全站共38.9k字</span></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script></body></html><script type="text/javascript" src="/js/src/love.js"></script><!-- rebuild by neat -->

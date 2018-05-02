@@ -1,0 +1,326 @@
+<!-- build time:Thu May 03 2018 01:40:59 GMT+0800 (中国标准时间) --><!DOCTYPE html><html class="theme-next pisces use-motion" lang="zh-Hans"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><meta name="theme-color" content="#222"><script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script><link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet"><style>.pace .pace-progress{background:#28004D;height:2px}.pace .pace-progress-inner{box-shadow:0 0 10px #1E92FB,0 0 5px #1E92FB}.pace .pace-activity{border-top-color:#1E92FB;border-left-color:#1E92FB}</style><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"><link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css"><link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css"><link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css"><meta name="keywords" content="Kotlin,kotlin接口,kotlin枚举,"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2"><meta name="description" content="在上一章节中，详细的类(class)做了一个实例讲解，提到了类(class)的实例化、构造函数、声明、实现方式、和Java中类的区别等。但是对于Kotlin中的类的使用还远远不止那些。并且在上文中提到了关于类的类别。故而这篇文章就详细说一说Kotlin中的枚举类（Enum）、接口类（Interface）的使用。"><meta name="keywords" content="Kotlin,kotlin接口,kotlin枚举"><meta property="og:type" content="article"><meta property="og:title" content="Kotlin——从无到有系列之中级篇（五）：枚举类（Enum）、接口类（Interface）详解"><meta property="og:url" content="http://yoursite.com/2017/12/18/kotlin/接口与枚举类/index.html"><meta property="og:site_name" content="Jetictors&#39;Blogs"><meta property="og:description" content="在上一章节中，详细的类(class)做了一个实例讲解，提到了类(class)的实例化、构造函数、声明、实现方式、和Java中类的区别等。但是对于Kotlin中的类的使用还远远不止那些。并且在上文中提到了关于类的类别。故而这篇文章就详细说一说Kotlin中的枚举类（Enum）、接口类（Interface）的使用。"><meta property="og:locale" content="zh-Hans"><meta property="og:image" content="https://user-gold-cdn.xitu.io/2017/12/16/1605e233874d3118?w=1240&h=611&f=png&s=38638"><meta property="og:updated_time" content="2018-04-29T16:14:01.040Z"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Kotlin——从无到有系列之中级篇（五）：枚举类（Enum）、接口类（Interface）详解"><meta name="twitter:description" content="在上一章节中，详细的类(class)做了一个实例讲解，提到了类(class)的实例化、构造函数、声明、实现方式、和Java中类的区别等。但是对于Kotlin中的类的使用还远远不止那些。并且在上文中提到了关于类的类别。故而这篇文章就详细说一说Kotlin中的枚举类（Enum）、接口类（Interface）的使用。"><meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2017/12/16/1605e233874d3118?w=1240&h=611&f=png&s=38638"><script type="text/javascript" id="hexo.configurations">var NexT=window.NexT||{},CONFIG={root:"/",scheme:"Pisces",sidebar:{position:"left",display:"post",offset:12,offset_float:12,b2t:!1,scrollpercent:!1,onmobile:!1},fancybox:!0,tabs:!0,motion:!0,duoshuo:{userId:"0",author:"博主"},algolia:{applicationID:"",apiKey:"",indexName:"",hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}}}</script><link rel="canonical" href="http://yoursite.com/2017/12/18/kotlin/接口与枚举类/"><title>Kotlin——从无到有系列之中级篇（五）：枚举类（Enum）、接口类（Interface）详解 | Jetictors'Blogs</title></head><canvas class="fireworks" style="position:fixed;left:0;top:0;z-index:1;pointer-events:none"></canvas><script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script><script type="text/javascript" src="/js/src/fireworks.js"></script><body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans"><div class="container sidebar-position-left page-post-detail"><div class="headband"></div><a href="https://github.com/Jetictors"><img style="position:absolute;top:0;right:0;border:0" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a><header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-wrapper"><div class="site-meta"><div class="custom-logo-site-title"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span> <span class="site-title">Jetictors'Blogs</span> <span class="logo-line-after"><i></i></span></a></div><p class="site-subtitle">热爱编程、技术，喜爱分享的小码农</p></div><div class="site-nav-toggle"><button><span class="btn-bar"></span> <span class="btn-bar"></span> <span class="btn-bar"></span></button></div></div><nav class="site-nav"><ul id="menu" class="menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i><br>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i><br>标签</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于</a></li></ul></nav></div></header><main id="main" class="main"><div class="main-inner"><div class="content-wrap"><div id="content" class="content"><div id="posts" class="posts-expand"><article class="post post-type-normal" itemscope itemtype="http://schema.org/Article"><div class="post-block"><link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/18/kotlin/接口与枚举类/"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="name" content="Jetictors"><meta itemprop="description" content=""><meta itemprop="image" content="/uploads/avatar.jpg"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="Jetictors'Blogs"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">Kotlin——从无到有系列之中级篇（五）：枚举类（Enum）、接口类（Interface）详解</h1><div class="post-meta"><span class="post-time"><span class="post-meta-item-icon"><i class="fa fa-calendar-o"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-18T00:00:00+08:00">2017-12-18 </time></span><span class="post-category"><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-folder-o"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Kotlin/" itemprop="url" rel="index"><span itemprop="name">Kotlin</span></a></span></span><div class="post-wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i> </span><span class="post-meta-item-text">字数统计</span> <span title="字数统计">2,686字 </span><span class="post-meta-divider">|</span> <span class="post-meta-item-icon"><i class="fa fa-clock-o"></i> </span><span class="post-meta-item-text">阅读时长</span> <span title="阅读时长">11分钟</span></div></div></header><div class="post-body" itemprop="articleBody"><p>在上一章节中，详细的<code>类(class)</code>做了一个实例讲解，提到了<code>类(class)</code>的实例化、构造函数、声明、实现方式、和<code>Java</code>中类的区别等。但是对于<code>Kotlin</code>中的类的使用还远远不止那些。并且在上文中提到了关于类的类别。故而这篇文章就详细说一说<code>Kotlin</code>中的枚举类（<code>Enum</code>）、接口类（<code>Interface</code>）的使用。</p><a id="more"></a><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p><img src="https://user-gold-cdn.xitu.io/2017/12/16/1605e233874d3118?w=1240&amp;h=611&amp;f=png&amp;s=38638" alt=""></p><h2 id="一、枚举类"><a href="#一、枚举类" class="headerlink" title="一、枚举类"></a>一、枚举类</h2><h3 id="1-1、声明方式及枚举常量"><a href="#1-1、声明方式及枚举常量" class="headerlink" title="1.1、声明方式及枚举常量"></a>1.1、声明方式及枚举常量</h3><blockquote><ul><li>关键字：<code>enum</code></li><li>枚举常量：即枚举类下的对象，每个枚举类包含0个到多个枚举常量。</li></ul></blockquote><p><strong>1.1.1、声明</strong></p><blockquote><p><code>enum</code>关键字在类头中的<code>class</code>关键字前面</p></blockquote><p>声明格式：</p><pre><code>enum class 类名{
+      ...
+}
+</code></pre><p><strong>1.1.2、枚举常量</strong></p><blockquote><p>枚举类中的每一个枚举常量都是一个对象，并且他们之间用逗号分隔。</p></blockquote><p>例：</p><pre><code>/**
+ * 例：关于一个网络请求结果的枚举类
+ */
+enum class State{
+    /*
+         NORMAL : 正常
+         NO_DATA : 数据为空
+         NO_INTERNET : 网络未连接
+         ERROR : 错误
+         OTHER : 其他
+     */
+
+    NORMAL,NO_DATA,NO_INTERNET,ERROR,OTHER
+}
+</code></pre><p><strong>1.1.3、访问枚举常量</strong></p><blockquote><ul><li>不需要实例化枚举类就可以访问枚举常量</li></ul></blockquote><p>使用方式为：</p><pre><code>枚举类名.枚举常量.属性
+</code></pre><p>通过上面例子来实例讲解：</p><pre><code>// 使用中缀符号访问枚举常量
+State.NORMAL.name
+State.NO_DATA.name
+State.NO_INTERNET.name
+State.ERROR.name
+State.OTHER.name
+</code></pre><p>这里只是让大家明白怎样去访问一个枚举常量。没有讲解到枚举常量的使用。枚举常量的使用请大家耐心的看下去。在下面会详细介绍怎样去使用它。</p><h3 id="1-2-、枚举常量的初始化"><a href="#1-2-、枚举常量的初始化" class="headerlink" title="1.2 、枚举常量的初始化"></a>1.2 、枚举常量的初始化</h3><blockquote><ul><li>因为每一个枚举都是枚举类的实例，所以他们可以是初始化过的。</li></ul></blockquote><p>例：</p><pre><code> enum class Color(var argb : Int){
+     RED(0xFF0000),
+     WHITE(0xFFFFFF),
+     BLACK(0x000000),
+     GREEN(0x00FF00)
+}
+</code></pre><h3 id="1-3、枚举常量的匿名类"><a href="#1-3、枚举常量的匿名类" class="headerlink" title="1.3、枚举常量的匿名类"></a>1.3、枚举常量的匿名类</h3><blockquote><ul><li>要实现枚举常量的匿名类，则必须提供一个抽象方法（必须重写的方法）。且该方法定义在枚举类内部。而且必须在枚举变量的后面。</li><li>枚举变量之间使用逗号（<code>,</code>）分割开。但是最后一个枚举变量必须使用分号结束。不然定义不了抽象方法。</li><li>在上面已经说过，每一个枚举常量就是一个对象。</li></ul></blockquote><p>例：</p><pre><code>fun main(args: Array&lt;String&gt;) {
+    ConsoleColor.BLACK.print()
+}
+
+enum class ConsoleColor(var argb : Int){
+    RED(0xFF0000){
+        override fun print() {
+            println(&quot;我是枚举常量 RED &quot;)
+        }
+    },
+    WHITE(0xFFFFFF){
+        override fun print() {
+            println(&quot;我是枚举常量 WHITE &quot;)
+        }
+    },
+    BLACK(0x000000){
+        override fun print() {
+            println(&quot;我是枚举常量 BLACK &quot;)
+        }
+   },
+    GREEN(0x00FF00){
+        override fun print() {
+            println(&quot;我是枚举常量 GREEN &quot;)
+        }
+    };
+
+    abstract fun print()
+}
+</code></pre><p>输出结果为：</p><pre><code>我是枚举常量 BLACK 
+</code></pre><h3 id="1-4、枚举类的使用"><a href="#1-4、枚举类的使用" class="headerlink" title="1.4、枚举类的使用"></a>1.4、枚举类的使用</h3><blockquote><ul><li>每个枚举常量都包含两个属性：<code>name（枚举常量名）</code>和<code>ordinal（枚举常量位置）</code></li><li>提供了<code>values()</code>和<code>valueOf()</code>方法来检测指定的名称与枚举类中定义的任何枚举常量是否匹配。</li><li>自 <code>Kotlin 1.1</code>起，可以使用 <code>enumValues&lt;T&gt;()</code>和 <code>enumValueOf&lt;T&gt;()</code>函数以泛型的方式访问枚举类中的常量。</li></ul></blockquote><p><strong>1.4.1、访问枚举变量属性</strong></p><p>例：</p><pre><code>fun main(args: Array&lt;String&gt;) {
+    println(&quot;name = &quot; + Color.RED.name + &quot;\tordinal = &quot; + Color.RED.ordinal)
+    println(&quot;name = &quot; + Color.WHITE.name + &quot;\tordinal = &quot; + Color.WHITE.ordinal)
+    println(&quot;name = &quot; + Color.BLACK.name + &quot;\tordinal = &quot; + Color.BLACK.ordinal)
+    println(&quot;name = &quot; + Color.GREEN.name + &quot;\tordinal = &quot; + Color.GREEN.ordinal)
+}
+
+enum class Color(var argb : Int){
+     RED(0xFF0000),
+     WHITE(0xFFFFFF),
+     BLACK(0x000000),
+     GREEN(0x00FF00)
+}  
+</code></pre><p>输出结果为：</p><pre><code>name = RED    ordinal = 0
+name = WHITE    ordinal = 1
+name = BLACK    ordinal = 2
+name = GREEN    ordinal = 3
+</code></pre><p><strong>1.4.2、使用<code>enumValues&lt;T&gt;()</code>和 <code>enumValueOf&lt;T&gt;()</code>访问</strong></p><p>例： 枚举类还是上面例子中的<code>Color</code>类</p><pre><code>println(enumValues&lt;Color&gt;().joinToString { it.name })
+println(enumValueOf&lt;Color&gt;(&quot;RED&quot;))
+</code></pre><p>输出结果为：</p><pre><code>RED, WHITE, BLACK, GREEN
+RED
+</code></pre><p><strong>1.4.3、使用<code>valueOf()</code>和<code>values()</code>检测</strong></p><p>例：</p><pre><code>println(Color.valueOf(&quot;RED&quot;))
+println(Color.values()[0])
+println(Color.values()[1])
+println(Color.values()[2])
+println(Color.values()[3])
+</code></pre><p>输出结果为：</p><pre><code>RED
+RED
+WHITE
+BLACK
+GREEN
+</code></pre><p>其中，若使用<code>Color.valueOf(&quot;不存在的枚举常量&quot;)</code>，则会抛出<code>IllegalArgumentException</code> 异常，即枚举变量不存在。若使用<code>Color.values()[大于枚举常量位置]</code>，则会抛出下标越界异常。</p><h3 id="1-5、枚举类的源码分析"><a href="#1-5、枚举类的源码分析" class="headerlink" title="1.5、枚举类的源码分析"></a>1.5、枚举类的源码分析</h3><blockquote><p>即<code>Enum.kt</code>这个源文件。</p></blockquote><p>在这里我大致的说明一下这个源文件的方法、属性等。有兴趣的可以去看看这个源文件。其实里面也没几个方法。</p><p><strong>1.5.1、默认实现了<code>companion object {}</code></strong></p><blockquote><p>这也是我们访问枚举常量无需实例化枚举类的原因。</p></blockquote><p><strong>1.5.2、仅提供了两个属性</strong></p><blockquote><ul><li>即我们上面用到的枚举常量名称(<code>name</code>)和枚举常量位置(<code>ordinal</code>)</li></ul></blockquote><p>贴上这两个属性的源码：</p><pre><code>/**
+ * Returns the name of this enum constant, exactly as declared in its enum declaration.
+ */
+public final val name: String
+
+/**
+ * Returns the ordinal of this enumeration constant (its position in its enum declaration, where the initial constant
+ * is assigned an ordinal of zero).
+ */
+public final val ordinal: Int
+</code></pre><p><strong>1.5.3、实现了<code>Comparable</code>接口</strong></p><blockquote><ul><li>这也是我们能获取枚举常量位置的原因。</li></ul></blockquote><p>这是<code>Enum.kt</code>源文件。让大家看看它实现了<code>Comparable</code>接口</p><pre><code>public abstract class Enum&lt;E : Enum&lt;E&gt;&gt;(name: String, ordinal: Int): Comparable&lt;E&gt;{
+      ...
+}
+</code></pre><p>再来看看<code>Comparable.kt</code>里面做了些什么。其实里面就提供了一个方法罢了…</p><pre><code>public interface Comparable&lt;in T&gt; {
+    /**
+     * Compares this object with the specified object for order. Returns zero if this object is equal
+     * to the specified [other] object, a negative number if it&apos;s less than [other], or a positive number
+     * if it&apos;s greater than [other].
+     */
+    public operator fun compareTo(other: T): Int
+}
+</code></pre><p>关于枚举类的讲解就写到这里了。不清楚的可以多看看文章，或者看看源码、官方文档等等。当然，自己按照我的例子去敲一遍代码也是非常不错的。</p><h2 id="二、接口类"><a href="#二、接口类" class="headerlink" title="二、接口类"></a>二、接口类</h2><h3 id="2-1、接口的基础使用"><a href="#2-1、接口的基础使用" class="headerlink" title="2.1、接口的基础使用"></a>2.1、接口的基础使用</h3><p><strong>2.1.1、声明</strong></p><blockquote><p>关键字：<code>interface</code></p></blockquote><p>定义格式：</p><pre><code>interface 接口名{
+    ...
+}
+</code></pre><p><strong>2.1.2、用法</strong></p><blockquote><ul><li>关键字：冒号(<code>:</code>)，这一点是和<code>Java</code>不同的。<code>Java</code>中使用接口使用的是<code>implements</code>关键字</li><li>在<code>Kotlin</code>中冒号(<code>:</code>)使用的地方很多：<ol><li>用于变量的定义</li><li>用于继承</li><li>用于接口</li><li>方法的返回类型声明</li></ol></li></ul></blockquote><p>使用格式：</p><pre><code>class 类名 ： 接口名{
+    // 重写的接口函数、属性等
+    ...
+}
+</code></pre><p><strong>2.1.3、举例说明</strong></p><pre><code>fun main(args: Array&lt;String&gt;) {
+
+   // 类的初始化
+   var demo = Demo1()
+
+   demo.fun1()
+}
+
+/**
+ * 我定义的接口
+ */
+interface Demo1Interface{
+
+    // 定义的方法
+    fun fun1()
+}
+
+/**
+ * 接口的实现类
+ */
+class Demo1 : Demo1Interface{
+    override fun fun1() {
+        println(&quot;我是接口中的fun1方法&quot;)
+    }
+}
+</code></pre><p>输出结果为：</p><pre><code>我是接口中的fun1方法
+</code></pre><h3 id="2-2、接口中的方法使用"><a href="#2-2、接口中的方法使用" class="headerlink" title="2.2、接口中的方法使用"></a>2.2、接口中的方法使用</h3><blockquote><ul><li>不带结构体的函数可以省略大括号，且不用强制重写带结构体的函数就可以直接调用。不太明白也没关系，下面的代码中都有注释。</li></ul></blockquote><p>例：</p><pre><code>fun main(args: Array&lt;String&gt;) {
+    var demo = Demo2()
+
+    demo.fun1()
+    demo.fun2(5)
+    println(demo.fun3(10))
+    println(demo.fun4())
+
+    //可以不重写该方法直接调用
+    demo.fun5()
+}
+
+interface Demo2Interface{
+
+    /**
+     * 定义一个无参数无返回值的方法
+     */
+    fun fun1()
+
+    /**
+     * 定义一个有参数的方法
+     */
+    fun fun2(num: Int)
+
+    /**
+     * 定义一个有参数有返回值的方法
+     */
+    fun fun3(num: Int) : Int
+
+    // 下面的两个方法是有结构体， 故可以不重写
+
+    /**
+     * 定义一个无参数有返回值的方法
+     */
+    fun fun4() : String{
+        return &quot;fun4&quot;
+    }
+
+    /**
+     * 定义一个无结构体函数，大括号是可以省略的
+     */
+    fun fun5(){
+        // 如果函数中不存在表达式，大括号可以省略。
+        // 如fun1一样
+    }
+}
+
+class Demo2 : Demo2Interface{
+
+    override fun fun1() {
+        println(&quot;我是fun1()方法&quot;)
+    }
+
+    override fun fun2(num: Int) {
+        println(&quot;我是fun2()方法，我的参数是$num&quot;)
+    }
+
+    override fun fun3(num: Int): Int {
+        println(&quot;我是fun3()方法，我的参数是$num，并且返回一个Int类型的值&quot;)
+        return num + 3
+    }
+
+    override fun fun4(): String {
+        println(&quot;我是fun4()方法，并且返回一个String类型的值&quot;)
+
+        /*
+            接口中的fun4()方法默认返回”fun4“字符串.
+            可以用super.fun4()返回默认值
+            也可以不用super关键字，自己返回一个字符串
+        */
+        return super.fun4()
+    }
+
+    /*
+         接口中的fun5()带有结构体，故而可以不用重写，
+         fun4()同样
+    */
+
+    //    override fun fun5() {
+    //        super.fun5()
+    //    }
+}
+</code></pre><p>输出结果为：</p><pre><code>我是fun1()方法
+我是fun2()方法，我的参数是5
+我是fun3()方法，我的参数是10，并且返回一个Int类型的值
+13
+我是fun4()方法，并且返回一个String类型的值
+fun4
+</code></pre><h3 id="2-3、接口中的属性使用"><a href="#2-3、接口中的属性使用" class="headerlink" title="2.3、接口中的属性使用"></a>2.3、接口中的属性使用</h3><blockquote><ul><li>在接口中申明属性。接口中的属性要么是抽象的，要么提供访问器的实现。接口属性不可以有后备字段。而且访问器不可以引用它们。</li></ul></blockquote><p><strong>2.3.1、作为抽象</strong></p><blockquote><ul><li>即重写属性的时候是在实现类的类参数中。这也是用代码提示去重写的实现方法</li></ul></blockquote><p>例：</p><pre><code>fun main(args: Array&lt;String&gt;) {
+    var demo = Demo3(1,2)
+    println(demo.sum())
+}
+
+interface Demo3Interface{
+
+    val num1: Int
+
+    val num2 : Int  
+}
+
+class Demo3(override val num1: Int, override val num2: Int) : Demo3Interface{
+    fun sum() : Int{
+        return num1 + num2
+    }
+}
+</code></pre><p>输出结果为：</p><pre><code>3
+</code></pre><p><strong>2.3.2、作为访问器</strong></p><blockquote><p>即手动方式去实现重写，并提供get()方法</p></blockquote><p>例：</p><pre><code>fun main(args: Array&lt;String&gt;) {
+    println(demo.result())
+
+    // 在这里也可以改变接口属性的值
+    demo.num4 = 10
+    println(demo.result())
+}
+
+interface Demo3Interface{
+
+     // 声明比那俩和提供默认值
+     // 注意： val num3: Int = 3  这种方式不提供，为直接报错的
+    val num3: Int
+    get() = 3
+
+    val num4: Int
+}
+
+class Demo3(override val num1: Int, override val num2: Int) : Demo3Interface{
+
+    // 提供访问器实现
+    override val num3: Int
+        get() = super.num3
+
+    // 手动赋值
+    override var num4: Int = 4
+
+    fun result() : Int{
+        return num3 + num4
+    }
+}
+</code></pre><p>输出结果为：</p><pre><code>7
+13
+</code></pre><h3 id="2-4、接口的冲突问题解决"><a href="#2-4、接口的冲突问题解决" class="headerlink" title="2.4、接口的冲突问题解决"></a>2.4、接口的冲突问题解决</h3><blockquote><ul><li>该问题是指当我们在父类中声明了许多类型，有可能出现一个方法的多种实现。</li></ul></blockquote><p>例：</p><pre><code>fun main(args: Array&lt;String&gt;) {
+
+    // 类的初始化
+    val demo = Demo4()
+
+    demo.fun1()
+    demo.fun2()
+}
+
+interface Demo4InterfaceOne{
+    fun fun1(){
+        println(&quot;我是Demo4InterfaceOne中的fun1()&quot;)
+    }
+
+    fun fun2(){
+        println(&quot;我是Demo4InterfaceOne中的fun2()&quot;)
+    }
+}
+
+interface Demo4InterfaceTwo{
+    fun fun1(){
+        println(&quot;我是Demo4InterfaceTwo中的fun1()&quot;)
+    }
+
+    fun fun2(){
+        println(&quot;我是Demo4InterfaceTwo中的fun2()&quot;)
+    }
+}
+
+class Demo4 : Demo4InterfaceOne,Demo4InterfaceTwo{
+
+    override fun fun1() {
+        super&lt;Demo4InterfaceOne&gt;.fun1()
+        super&lt;Demo4InterfaceTwo&gt;.fun1()
+    }
+
+    override fun fun2() {
+        super&lt;Demo4InterfaceOne&gt;.fun2()
+        super&lt;Demo4InterfaceTwo&gt;.fun2()
+    }
+
+}
+</code></pre><p>说明：<code>Demo4</code>实现了<code>Demo4InterfaceOne</code>和<code>Demo4InterfaceTwo</code>两个接口，而两个接口中都存在两个相同方法名的方法。因此编译器不知道应该选哪个，故而我们用<code>super&lt;接口名&gt;.方法名</code>来区分。</p><h2 id="三、-总结"><a href="#三、-总结" class="headerlink" title="三、 总结"></a>三、 总结</h2><p>我个人是从事<code>Android</code>开发的，以前用<code>Java</code>语言开发<code>APP</code>时因为考虑到手机性能的问题几乎用不到枚举的。因为枚举太消耗内存了。当然用<code>Kotlin</code>语言开发<code>Android</code>项目中是否要用到枚举去便利去解决一些问题，此待小生自己研究。但是开发服务端项目时，一些问题用枚举是非常便利性的。<br>对于接口类来说，它在一个项目中是重中之重的，对于项目中代码的耦合性、便利性都能用接口类去实现一个良好的项目架构，对项目后期的维护或者说重构来说，都能有良好的体现。可能很多<code>Java</code>开发者都深有体会</p><p><a href="https://github.com/Jetictors/KotlinLeran/blob/master/src/com/kotlin/leran/cls/classDemo/EnumDemo.kt" target="_blank" rel="noopener">项目源代码</a></p></div><div><div id="wechat_subscriber" style="display:block;padding:10px 0;margin:20px auto;width:100%;text-align:center"><img id="wechat_subscriber_qcode" src="/uploads/qq_qcode.jpg" alt="Jetictors wechat" style="width:200px;max-width:100%"><div>欢迎加入kotlin交流群，群号 497071402</div></div></div><div><div style="padding:10px 0;margin:20px auto;width:90%;text-align:center"><div>坚持原创技术分享，您的支持将鼓励我继续创作！有钱的捧个钱场，没钱的捧个人场！谢谢大家了</div><button id="rewardButton" style="margin:12px 0 0 0" disable="enable" onclick='var e=document.getElementById("QR");"none"===e.style.display?e.style.display="block":e.style.display="none"'><span>赞赏</span></button><div id="QR" style="display:none"><div id="wechat" style="display:inline-block"><img id="wechat_qr" src="/images/wechatpay.jpg" alt="Jetictors WeChat Pay"><p>微信 Pay</p></div><div id="alipay" style="display:inline-block"><img id="alipay_qr" src="/images/alipay.jpg" alt="Jetictors Alipay"><p>支付宝</p></div></div></div></div><div><div><div style="text-align:center;color:#ccc;font-size:14px">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div></div></div><footer class="post-footer"><div class="post-tags"><a href="/tags/Kotlin/" rel="tag"><i class="fa fa-tag"></i> Kotlin</a> <a href="/tags/kotlin接口/" rel="tag"><i class="fa fa-tag"></i> kotlin接口</a> <a href="/tags/kotlin枚举/" rel="tag"><i class="fa fa-tag"></i> kotlin枚举</a></div><div class="post-nav"><div class="post-nav-next post-nav-item"><a href="/2017/12/15/android/dialog/" rel="next" title="Android——最全的系统对话框（AlertDialog）详解"><i class="fa fa-chevron-left"></i> Android——最全的系统对话框（AlertDialog）详解</a></div><span class="post-nav-divider"></span><div class="post-nav-prev post-nav-item"><a href="/2018/01/02/kotlin/数据类与密封类/" rel="prev" title="Kotlin——从无到有系列之中级篇（六）：数据类（data）、密封类详解">Kotlin——从无到有系列之中级篇（六）：数据类（data）、密封类详解 <i class="fa fa-chevron-right"></i></a></div></div></footer></div></article><div class="post-spread"><div class="jiathis_style"><a class="jiathis_button_tsina"></a> <a class="jiathis_button_tqq"></a> <a class="jiathis_button_weixin"></a> <a class="jiathis_button_cqq"></a> <a class="jiathis_button_douban"></a> <a class="jiathis_button_renren"></a> <a class="jiathis_button_qzone"></a> <a class="jiathis_button_kaixin001"></a> <a class="jiathis_button_copy"></a> <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a> <a class="jiathis_counter_style"></a></div><script type="text/javascript">var jiathis_config={hideMore:!1}</script><script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script></div></div></div><div class="comments" id="comments"></div></div><div class="sidebar-toggle"><div class="sidebar-toggle-line-wrap"><span class="sidebar-toggle-line sidebar-toggle-line-first"></span> <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span> <span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id="sidebar" class="sidebar"><div class="sidebar-inner"><ul class="sidebar-nav motion-element"><li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">文章目录</li><li class="sidebar-nav-overview" data-target="site-overview">站点概览</li></ul><section class="site-overview sidebar-panel"><div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person"><img class="site-author-image" itemprop="image" src="/uploads/avatar.jpg" alt="Jetictors"><p class="site-author-name" itemprop="name">Jetictors</p><p class="site-description motion-element" itemprop="description">凡事豫则立，不豫则废 ———— 《礼记·中庸》</p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href="/archives/"><span class="site-state-item-count">17</span> <span class="site-state-item-name">日志</span></a></div><div class="site-state-item site-state-categories"><a href="/categories/index.html"><span class="site-state-item-count">3</span> <span class="site-state-item-name">分类</span></a></div><div class="site-state-item site-state-tags"><a href="/tags/index.html"><span class="site-state-item-count">25</span> <span class="site-state-item-name">标签</span></a></div></nav><div class="links-of-author motion-element"><span class="links-of-author-item"><a href="https://github.com/Jetictors" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i> GitHub </a></span><span class="links-of-author-item"><a href="" target="_blank" title="E-Mail"><i class="fa fa-fw fa-envelope"></i> E-Mail </a></span><span class="links-of-author-item"><a href="https://www.cnblogs.com/Jetictors/" target="_blank" title="博客园"><i class="fa fa-fw fa-bitcoin"></i> 博客园 </a></span><span class="links-of-author-item"><a href="https://juejin.im/user/5709f5798ac247004c295d95/posts" target="_blank" title="掘金"><i class="fa fa-fw fa-bitcoin"></i> 掘金</a></span></div></section><section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active"><div class="post-toc"><div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目录"><span class="nav-number">1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一、枚举类"><span class="nav-number">2.</span> <span class="nav-text">一、枚举类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1、声明方式及枚举常量"><span class="nav-number">2.1.</span> <span class="nav-text">1.1、声明方式及枚举常量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-、枚举常量的初始化"><span class="nav-number">2.2.</span> <span class="nav-text">1.2 、枚举常量的初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3、枚举常量的匿名类"><span class="nav-number">2.3.</span> <span class="nav-text">1.3、枚举常量的匿名类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4、枚举类的使用"><span class="nav-number">2.4.</span> <span class="nav-text">1.4、枚举类的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5、枚举类的源码分析"><span class="nav-number">2.5.</span> <span class="nav-text">1.5、枚举类的源码分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、接口类"><span class="nav-number">3.</span> <span class="nav-text">二、接口类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1、接口的基础使用"><span class="nav-number">3.1.</span> <span class="nav-text">2.1、接口的基础使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2、接口中的方法使用"><span class="nav-number">3.2.</span> <span class="nav-text">2.2、接口中的方法使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3、接口中的属性使用"><span class="nav-number">3.3.</span> <span class="nav-text">2.3、接口中的属性使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4、接口的冲突问题解决"><span class="nav-number">3.4.</span> <span class="nav-text">2.4、接口的冲突问题解决</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、-总结"><span class="nav-number">4.</span> <span class="nav-text">三、 总结</span></a></li></ol></div></div></section></div></aside></div></main><footer id="footer" class="footer"><div class="footer-inner"><script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script><div class="copyright">&copy; 2017 - <span itemprop="copyrightYear">2018</span> <span class="with-love"><i class="fa fa-heartbeat"></i> </span><span class="author" itemprop="copyrightHolder">Jetictors</span></div><div class="powered-by"><i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv"> 本站访客数:<span id="busuanzi_value_site_uv"></span></span></div><div class="theme-info"><div class="powered-by"></div><span class="post-count">博客全站共38.9k字</span></div></div></footer><div class="back-to-top"><i class="fa fa-arrow-up"></i></div></div><script type="text/javascript">"[object Function]"!==Object.prototype.toString.call(window.Promise)&&(window.Promise=null)</script><script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script><script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script><script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script><script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script><script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script><script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script><script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script><script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script></body></html><script type="text/javascript" src="/js/src/love.js"></script><!-- rebuild by neat -->
